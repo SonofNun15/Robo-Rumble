@@ -1,0 +1,36 @@
+{
+  "name": "RoboRumble",
+  "version": "0.0.0",
+  "homepage": "https://github.com/SonofNun15/Robo-Rumble",
+  "authors": [
+    "Josh Graber <jgraber@renovo1.com>"
+  ],
+  "description": "An online turn-based strategy game. Players build robots and program them to win contests.",
+  "main": "server.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "robo",
+    "rumble",
+    "rally",
+    "mean",
+    "angular",
+    "express",
+    "mongo",
+    "node"
+  ],
+  "license": "GPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.16"
+  }
+}
