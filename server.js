@@ -32,6 +32,11 @@ var loggingProcessor = morgan();
 app.use(loggingProcessor);
 app.use(stylusPreprocessor);
 app.use(express.static(__dirname + '/public'));
+
+app.get('/partials/:partialPath', function(req, res) {
+	res.render('partials/' + req.params.partialPath);
+});
+
 app.get('*', function(req, res) {
 	res.render('index');
 });
