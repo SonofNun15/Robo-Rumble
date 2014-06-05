@@ -28,6 +28,15 @@ app.set('view engine', 'jade');
 var morgan = require('morgan');
 var loggingProcessor = morgan();
 
+// MONGO DB
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/robo-rumble');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error...'));
+db.once('open', function() {
+	console.log('robo-rumble db opened');
+});
+
 // ROUTING
 app.use(loggingProcessor);
 app.use(stylusPreprocessor);
