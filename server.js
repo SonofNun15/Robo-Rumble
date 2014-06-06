@@ -7,6 +7,13 @@ var environment = process.env.NODE_ENV;
 
 var app = express();
 
+function getDBConnectionStringForEnvironment() {
+	if (environment === 'development') {
+		connectionString = 'mongodb://localhost/robo-rumble';
+	} else {
+		connectionString = 'mongodb://dev:dev@ds049219.mongolab.com:49219/robo-rumble-db';
+	}
+}
 
 // STYLUS
 var stylus = require('stylus');
@@ -30,7 +37,9 @@ var loggingProcessor = morgan();
 
 // MONGO DB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/robo-rumble');
+
+var connectionString = getDBConnectionStringForEnvironment();
+mongoose.connect(connectionString);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function() {
@@ -51,7 +60,7 @@ app.get('*', function(req, res) {
 });
 
 // LAUNCH SERVER
-var port = 3030;
+var port = process.env.PORT || 3030;
 
 app.listen(port);
 
