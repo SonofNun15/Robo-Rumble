@@ -55,6 +55,18 @@ app.get('/partials/:partialPath', function(req, res) {
 	res.render('partials/' + req.params.partialPath);
 });
 
+app.get('/new/*', function(req, res) {
+	res.render('new');
+});
+
+app.get('/continue/*', function(req, res) {
+	res.render('continue');
+});
+
+app.get('/watch/*', function(req, res) {
+	res.render('watch');
+});
+
 app.get('*', function(req, res) {
 	res.render('index');
 });
