@@ -27,31 +27,7 @@ block main-content
 						
 		a.btn.btn-primary(href="/new/") Start a Game
 
-	.row
-		section.col-md-6
-			h3 Capture the Flag
-			p Describe capture the flag.
-			a.btn.btn-default(href="/new/flag/") New Capture the Flag Game
-		
-		section.col-md-6
-			h3 Death Matches
-			p Describe death match.
-			a.btn.btn-default(href="/new/death/") New Death Match Game
-
-		section.col-md-6
-			h3 King of the Hill
-			p Describe king of the hill.
-			a.btn.btn-default(href="/new/hill/") New King of the Hill Game
-
-		section.col-md-6
-			h3 Robo Rugby
-			p Describe robo rugby.
-			a.btn.btn-default(href="/new/rugby/") New Rugby Game
-
-		section.col-md-6
-			h3 Races
-			p Describe races.
-			a.btn.btn-default(href="/new/race/") New Race Game
+	div(ng-include="'partials/gameDescriptions'")
 	
 	hr
 	
