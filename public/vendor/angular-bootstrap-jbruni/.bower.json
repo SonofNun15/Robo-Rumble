@@ -1,0 +1,23 @@
+{
+  "author": {
+    "name": "https://github.com/angular-ui/bootstrap/graphs/contributors"
+  },
+  "name": "angular-bootstrap-jbruni",
+  "version": "0.11.0",
+  "main": [
+    "./ui-bootstrap-tpls.js"
+  ],
+  "dependencies": {
+    "angular": ">=1"
+  },
+  "homepage": "https://github.com/jbruni/bootstrap-bower-jbruni",
+  "_release": "0.11.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.11.0",
+    "commit": "65dc59b67515446771989c2cce9ab60c2cb34ac4"
+  },
+  "_source": "git://github.com/jbruni/bootstrap-bower-jbruni.git",
+  "_target": "~0.11.0",
+  "_originalSource": "angular-bootstrap-jbruni"
+}
