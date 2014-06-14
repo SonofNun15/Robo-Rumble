@@ -1,0 +1,7 @@
+form.form-inline(ng-submit="login(true)")
+	.form-group
+		input.form-control(type="text" placeholder="Name" ng-model="username")
+	.form-group
+		input.form-control(type="password" placeholder="Password" ng-model="password")
+	// Include a submit button so that angular will submit the form when enter is pressed
+	input(type="submit" style="display: none")

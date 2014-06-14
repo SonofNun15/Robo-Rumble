@@ -1,0 +1,7 @@
+span.hidden-xs
+	p.navbar-text(ng-show="loggedIn") Hi, {{user}}!
+	button.btn.btn-warning.navbar-btn.login-btn(popover-placement="left" popover-template="/partials/user/login-controls" popover-trigger="show" popover-show="loggingIn" ng-hide="loggedIn" ng-click="login(true)") 
+		span(ng-show="processing") ...
+		span Login
+
+button.btn.btn-success.navbar-btn(ng-show="loggedIn" ng-click="logout()") Logout
