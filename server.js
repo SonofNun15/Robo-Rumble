@@ -51,24 +51,8 @@ app.use(loggingProcessor);
 app.use(stylusPreprocessor);
 app.use(express.static(__dirname + '/public'));
 
-app.get('/partials/:partialPath', function(req, res) {
-	res.render('partials/' + req.params.partialPath);
-});
-
-app.get('/partials/new/:partialPath', function(req, res) {
-	res.render('partials/new/' + req.params.partialPath);
-});
-
-app.get('/partials/continue/:partialPath', function(req, res) {
-	res.render('partials/continue/' + req.params.partialPath);
-});
-
-app.get('/partials/watch/:partialPath', function(req, res) {
-	res.render('partials/watch/' + req.params.partialPath);
-});
-
-app.get('/partials/play/:partialPath', function(req, res) {
-	res.render('partials/play/' + req.params.partialPath);
+app.get('/partials/*', function(req, res) {
+	res.render('../../public/app/' + req.params[0]);
 });
 
 app.get('/new/*', function(req, res) {
