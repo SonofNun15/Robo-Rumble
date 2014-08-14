@@ -8,4 +8,4 @@ module.exports = function(config) {
 	db.once('open', function() {
 		console.log('robo-rumble db opened');
 	});
-}
+};
