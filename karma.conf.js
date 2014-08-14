@@ -2,7 +2,7 @@
 // Generated on Thu Aug 14 2014 08:52:14 GMT-0400 (Eastern Daylight Time)
 
 module.exports = function(config) {
-  config.set({
+	var karmaConfig = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -42,6 +42,12 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
 		reporters: ['dots', 'progress'],
 
+		// This would be used for testing directives... it makes the html template available to angular
+		// ngHtml2JsPreprocessor: {
+			// // setting this option will create only a single module that contains templates
+			// // from all the files, so you can load them all with module('templates')
+			// moduleName: 'templates'
+		// },
 
     // web server port
     port: 9876,
@@ -68,5 +74,10 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true
-  });
+	};
+	
+	// This would be used for testing directives... it makes the html templates available to angular
+	//config.preprocessors[angularPath + '*.html'] = [ 'ng-html2js' ];
+	
+	config.set(karmaConfig);
 };
