@@ -43,7 +43,9 @@
 		
 		// Domain entities
 		"Chassis"		: false,
-		"Robot"			: false	
+		"Robot"			: false,
+		
+		"instruction"	: true
 	},
 	"predef"        : [ "window", "$", "alert", "document", "jQuery", "_" ],
 
