@@ -3,9 +3,29 @@ function Robot() {
 	this.mods = [];
 }
 
-Robot.prototype.getInstructionList = function() {
+Robot.prototype.getAllInstructions = function(cpu) {
+	var cpus = this.chassis.getCPUs();
+	
+	var instructionLists = _.map(this.chassis.modules, function(module) {
+		// Get the module type complexity level for all cpus
+		var complexityLevels = _.map(cpus, function(cpu) { return cpu.getComplexityLevel(module.type); });
+		
+		// Get highest complexity and use it to get the instruction list
+		var maxComplexityLevel = _.max(complexityLevels);
+		
+		return module.getInstructionList(maxComplexityLevel);
+	});
+	
+	// Flatten the instruction lists and get only unique instructions
+	return _.union.apply(_, instructionLists);
+};
+
+Robot.prototype.getInstructionList = function(cpu) {
 	// Get the instruction lists from modules
-	var instructionLists = _.map(this.chassis.modules, function(module) { return module.getInstructionList(); });
+	var instructionLists = _.map(this.chassis.modules, function(module) {
+		var complexityLevel = cpu.getComplexityLevel(module.type);
+		return module.getInstructionList(complexityLevel);
+	});
 	
 	// Flatten the instruction lists and get only unique instructions
 	return _.union.apply(_, instructionLists);
