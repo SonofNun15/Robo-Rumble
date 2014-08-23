@@ -49,6 +49,7 @@
 		
 		"Point"			: false,
 		"Size"			: false,
+		"heading"		: true,
 		
 		"Map"			: false,
 		"ConcreteBlock"	: false
