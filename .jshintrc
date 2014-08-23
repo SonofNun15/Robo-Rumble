@@ -50,6 +50,7 @@
 		
 		"Point"			: false,
 		"Size"			: false,
+		"Vector"		: false,
 		"heading"		: true,
 		
 		"Map"			: false,
