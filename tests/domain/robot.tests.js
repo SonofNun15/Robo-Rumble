@@ -1,10 +1,9 @@
 describe ('Robot', function() {
 	it ('should return the instructions that the robots modules support', function() {
 		var robot = new Robot();
-		var chassis = new BoxChassis();
-		chassis.modules.push(new SpeedyWheels());
-		
-		robot.chassis = chassis;
+		robot.chassis = {
+			modules: [ new SpeedyWheels() ],
+		};
 		
 		var instructions = robot.getInstructionList();
 		
