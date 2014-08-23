@@ -1,5 +1,5 @@
 function Robot() {
-	this.chassis = new Chassis();
+	this.chassis = null;
 	this.mods = [];
 }
 
