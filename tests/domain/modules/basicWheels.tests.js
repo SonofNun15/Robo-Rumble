@@ -4,11 +4,12 @@ describe ('BasicWheels', function() {
 		floor.size.x = 2;
 		floor.size.y = 2;
 		
-		var drive = new BasicWheels();
-		
 		var robot = new Robot();
-		robot.coordinate.z = 1;
+		robot.coordinate = new Point(0, 0, 1);
 		robot.heading = heading.south;
+		
+		var drive = new BasicWheels(robot);
+		
 		robot.chassis = {
 			modules: [ drive ],
 		};
