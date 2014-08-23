@@ -15,6 +15,7 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
+		  'public/vendor/lodash/dist/lodash.js',
 		  'public/vendor/angular/angular.js',
 		  'public/vendor/angular-mocks/angular-mocks.js',
 		  'tests/client/test-app.js',
