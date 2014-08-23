@@ -1,4 +1,4 @@
 function ConcreteBlock() {
-	this.coordinate = new Vector();
+	this.coordinate = new Point();
 	this.size = new Size();
 }
