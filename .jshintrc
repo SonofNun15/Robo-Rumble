@@ -45,7 +45,13 @@
 		"Chassis"		: false,
 		"Robot"			: false,
 		
-		"instruction"	: true
+		"instruction"	: true,
+		
+		"Point"			: false,
+		"Size"			: false,
+		
+		"Map"			: false,
+		"ConcreteBlock"	: false
 	},
 	"predef"        : [ "window", "$", "alert", "document", "jQuery", "_" ],
 
