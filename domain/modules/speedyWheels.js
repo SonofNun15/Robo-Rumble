@@ -1,4 +1,5 @@
 function SpeedyWheels() {
+	this.slots = 4;
 }
 
 SpeedyWheels.prototype.getInstructionList = function() {
