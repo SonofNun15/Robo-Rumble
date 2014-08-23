@@ -50,6 +50,9 @@
 		"Point"			: false,
 		"Size"			: false,
 		
+		"moduleType"	: true,
+		"complexity"	: true,
+		
 		"Map"			: false,
 		"ConcreteBlock"	: false
 	},
