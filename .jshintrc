@@ -43,7 +43,13 @@
 		
 		// Domain entities
 		"Chassis"		: false,
-		"Robot"			: false	
+		"Robot"			: false,
+		
+		"Point"			: false,
+		"Size"			: false,
+		
+		"Map"			: false,
+		"ConcreteBlock"	: false
 	},
 	"predef"        : [ "window", "$", "alert", "document", "jQuery", "_" ],
 
