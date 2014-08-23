@@ -17,8 +17,10 @@ describe ('BasicWheels', function() {
 		map.items.push(floor);
 		map.items.push(robot);
 		
-		drive.execute(instruction.move1);
+		drive.execute(instruction.move1, map);
 		
-		expect(robot.coordinate).to.equal(new Point(0, 1, 1));
+		expect(robot.coordinate.x).to.equal(0);
+		expect(robot.coordinate.y).to.equal(1);
+		expect(robot.coordinate.z).to.equal(1);
 	});
 });
