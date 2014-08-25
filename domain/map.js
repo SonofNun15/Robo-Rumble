@@ -67,5 +67,11 @@ Map.prototype.intersect = function(ray, cube) {
     if (tzmax < tmax)
         tmax = tzmax;
 	
-	return true;
+	//a value of < 0 or > 1 indicates that the collision happens outside of the length of the Ray
+	if ((tmin > 0 && tmin < 1) || (tmax > 0 && tmax < 1)) {
+		return true;
+	}
+	else {
+		return false;
+	}
 };
