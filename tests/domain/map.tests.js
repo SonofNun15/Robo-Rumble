@@ -107,6 +107,31 @@ describe ('Map', function() {
 		expect(map.items).to.not.contain(robot);
 	});
 	
+	it ('should fall to a lower level', function() {
+		var floor = new ConcreteBlock();
+		floor.coordinate = new Point(0, 0, 0);
+		floor.size = new Size(2, 2, 0);
+		
+		var platform = new ConcreteBlock();
+		platform.coordinate = new Point(0, 0, 0);
+		platform.size = new Size(1, 1, 1);
+		
+		var robot = new Robot();
+		robot.coordinate = new Point(0, 0, 1); // on top of the platform
+		robot.heading = heading.east;
+		
+		var map = new Map();
+		map.items.push(floor);
+		map.items.push(platform);
+		map.items.push(robot);
+		
+		map.move(robot, robot.heading);
+		
+		expect(robot.coordinate.x).to.equal(1);
+		expect(robot.coordinate.y).to.equal(0);
+		expect(robot.coordinate.z).to.equal(0);
+	});
+	
 	it ('should not intersect with cube below', function() {
 		var vector = new Vector();
 		vector.origin = new Point(0.5, 0.5, 0.5);
