@@ -18,10 +18,7 @@ Point.prototype.add = function(relativePoint) {
 };
 
 Point.prototype.inverse = function() {
-	var inverse;
-	inverse.x = invert(this.x);
-	inverse.y = invert(this.y);
-	inverse.z = invert(this.z);
+	var inverse = new Point(invert(this.x), invert(this.y), invert(this.z));
 		
 	function invert(num) {
 		if (num !== 0) {
