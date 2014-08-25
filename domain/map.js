@@ -3,9 +3,29 @@ function Map() {
 }
 
 Map.prototype.move = function(movingItem, direction) {
-	var movementVector = movingItem.coordinate.toVector(direction);
-	//check for collision
-	movingItem.coordinate = movingItem.coordinate.add(direction);
+	var map = this;
+	var stop;
+	var movementRay = new Ray(movingItem.coordinate.toVector(direction.add(new Point(0.5, 0.5, 0.5))));
+	//apply some filter to the map items
+	_.each(this.items, checkForCollision);
+	if (!stop) {
+		movingItem.coordinate = movingItem.coordinate.add(direction);
+	}
+	
+	function checkForCollision(item) {
+		if (item === movingItem) {
+			//item can't collide with itself
+			return;
+		}
+		
+		if (map.intersect(movementRay, item)) {
+			if(item.permeability === permeability.nonpermeable) {
+				stop = true;
+			}
+			//if permeability is moveable, initiate a push
+			//call interaction functions
+		}
+	}
 };
 
 Map.prototype.intersect = function(ray, cube) {
