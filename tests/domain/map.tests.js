@@ -12,18 +12,12 @@ describe ('Map', function() {
 		robot.coordinate = new Point(0, 0, 1);
 		robot.heading = heading.east;
 		
-		var drive = new BasicWheels(robot);
-		
-		robot.chassis = {
-			modules: [ drive ],
-		};
-		
 		var map = new Map();
 		map.items.push(floor);
 		map.items.push(wall);
 		map.items.push(robot);
 		
-		drive.execute(instruction.move1, map);
+		map.move(robot, robot.heading);
 		
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);

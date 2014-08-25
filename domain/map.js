@@ -47,28 +47,28 @@ Map.prototype.intersect = function(ray, cube) {
 					, cube.coordinate.y + cube.size.y
 					, cube.coordinate.z + cube.size.z) ];
 
-    var tmin, tmax, tymin, tymax, tzmin, tzmax;
-    tmin = (bounds[ray.sign[0]].x - ray.origin.x) * ray.invoffset.x;
-    tmax = (bounds[1 - ray.sign[0]].x - ray.origin.x) * ray.invoffset.x;
-    tymin = (bounds[ray.sign[1]].y - ray.origin.y) * ray.invoffset.y;
-    tymax = (bounds[1 - ray.sign[1]].y - ray.origin.y) * ray.invoffset.y;
-    if ((tmin > tymax) || (tymin > tmax))
+    var minTimeToIntersect, maxTimeToIntersect, minTimeToYIntersect, maxTimeToYIntersect, minTimeToZIntersect, maxTimeToZIntersect;
+    minTimeToIntersect = (bounds[ray.sign[0]].x - ray.origin.x) * ray.invoffset.x;
+    maxTimeToIntersect = (bounds[1 - ray.sign[0]].x - ray.origin.x) * ray.invoffset.x;
+    minTimeToYIntersect = (bounds[ray.sign[1]].y - ray.origin.y) * ray.invoffset.y;
+    maxTimeToYIntersect = (bounds[1 - ray.sign[1]].y - ray.origin.y) * ray.invoffset.y;
+    if ((minTimeToIntersect > maxTimeToYIntersect) || (minTimeToYIntersect > maxTimeToIntersect))
         return false;
-    if (tymin > tmin)
-        tmin = tymin;
-    if (tymax < tmax)
-        tmax = tymax;
-    tzmin = (bounds[ray.sign[2]].z - ray.origin.z) * ray.invoffset.z;
-    tzmax = (bounds[1 - ray.sign[2]].z - ray.origin.z) * ray.invoffset.z;
-    if ((tmin > tzmax) || (tzmin > tmax))
+    if (minTimeToYIntersect > minTimeToIntersect)
+        minTimeToIntersect = minTimeToYIntersect;
+    if (maxTimeToYIntersect < maxTimeToIntersect)
+        maxTimeToIntersect = maxTimeToYIntersect;
+    minTimeToZIntersect = (bounds[ray.sign[2]].z - ray.origin.z) * ray.invoffset.z;
+    maxTimeToZIntersect = (bounds[1 - ray.sign[2]].z - ray.origin.z) * ray.invoffset.z;
+    if ((minTimeToIntersect > maxTimeToZIntersect) || (minTimeToZIntersect > maxTimeToIntersect))
         return false;
-    if (tzmin > tmin)
-        tmin = tzmin;
-    if (tzmax < tmax)
-        tmax = tzmax;
+    if (minTimeToZIntersect > minTimeToIntersect)
+        minTimeToIntersect = minTimeToZIntersect;
+    if (maxTimeToZIntersect < maxTimeToIntersect)
+        maxTimeToIntersect = maxTimeToZIntersect;
 	
 	//a value of < 0 or > 1 indicates that the collision happens outside of the length of the Ray
-	if ((tmin > 0 && tmin < 1) || (tmax > 0 && tmax < 1)) {
+	if ((minTimeToIntersect > 0 && minTimeToIntersect < 1) || (maxTimeToIntersect > 0 && maxTimeToIntersect < 1)) {
 		return true;
 	}
 	else {
