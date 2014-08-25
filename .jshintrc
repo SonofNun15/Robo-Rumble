@@ -51,6 +51,7 @@
 		"Point"			: false,
 		"Size"			: false,
 		"Vector"		: false,
+		"Ray"			: false,
 		"heading"		: true,
 		
 		"moduleType"	: true,
