@@ -89,6 +89,24 @@ describe ('Map', function() {
 		expect(robot3.coordinate.z).to.equal(0);
 	});
 	
+	it ('should fall off the edge of the map', function() {
+		var floor = new ConcreteBlock();
+		floor.coordinate = new Point(0, 0, 0);
+		floor.size = new Size(1, 1, 0);
+		
+		var robot = new Robot();
+		robot.coordinate = new Point(0, 0, 0);
+		robot.heading = heading.east;
+		
+		var map = new Map();
+		map.items.push(floor);
+		map.items.push(robot);
+		
+		map.move(robot, robot.heading);
+		
+		expect(map.items).to.not.contain(robot);
+	});
+	
 	it ('should not intersect with cube below', function() {
 		var vector = new Vector();
 		vector.origin = new Point(0.5, 0.5, 0.5);
