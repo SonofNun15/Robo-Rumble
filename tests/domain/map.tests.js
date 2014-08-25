@@ -3,7 +3,6 @@ describe ('Map', function() {
 		var floor = new ConcreteBlock();
 		floor.coordinate = new Point(0, 0, 0);
 		floor.size = new Size(2, 2, 0);
-		};
 		
 		var wall = new ConcreteBlock();
 		wall.coordinate = new Point(1, 0, 1);
@@ -29,6 +28,40 @@ describe ('Map', function() {
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
 		expect(robot.coordinate.z).to.equal(1);
+	});
+	
+	it ('should push a robot', function() {
+		var floor = new ConcreteBlock();
+		floor.coordinate = new Point(0, 0, 0);
+		floor.size = new Size(3, 3, 0);
+		
+		var robot = new Robot();
+		robot.coordinate = new Point(0, 0, 1);
+		robot.heading = heading.east;
+		
+		var drive = new BasicWheels(robot);
+		
+		robot.chassis = {
+			modules: [ drive ],
+		};
+		
+		var otherRobot = new Robot();
+		otherRobot.coordinate = new Point(1, 0, 1);
+		otherRobot.heading = heading.south; //heading should be irrelevant when being pushed
+		
+		var map = new Map();
+		map.items.push(floor);
+		map.items.push(robot);
+		map.items.push(otherRobot);
+		
+		drive.execute(instruction.move1, map);
+		
+		expect(robot.coordinate.x).to.equal(1);
+		expect(robot.coordinate.y).to.equal(0);
+		expect(robot.coordinate.z).to.equal(1);
+		expect(otherRobot.coordinate.x).to.equal(2);
+		expect(otherRobot.coordinate.y).to.equal(0);
+		expect(otherRobot.coordinate.z).to.equal(1);
 	});
 	
 	it ('should not intersect with cube below', function() {
