@@ -2,6 +2,7 @@ function Robot() {
 	MapItem.call(this);
 	this.permeability = permeability.moveable;
 	this.coordinate = new Point();
+	this.size = new Size(1, 1, 1);
 	this.heading = heading.south;
 	this.chassis = null;
 	this.mods = [];

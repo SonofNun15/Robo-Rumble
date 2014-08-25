@@ -2,10 +2,7 @@ describe ('Map', function() {
 	it ('should collide with wall', function() {
 		var floor = new ConcreteBlock();
 		floor.coordinate = new Point(0, 0, 0);
-		floor.size = {
-			x: 2,
-			y: 2,
-			z: 0,
+		floor.size = new Size(2, 2, 0);
 		};
 		
 		var wall = new ConcreteBlock();
@@ -45,11 +42,7 @@ describe ('Map', function() {
 		var ray = new Ray(vector);
 		var cube = {
 			coordinate: new Point(0, 0, 0),
-			size: {
-				x: 2,
-				y: 2,
-				z: 0,
-			},
+			size: new Size(2, 2, 0),
 		};
 		
 		var map = new Map();
@@ -66,11 +59,7 @@ describe ('Map', function() {
 		var ray = new Ray(vector);
 		var cube = {
 			coordinate: new Point(1, 0, 0),
-			size: {
-				x: 0,
-				y: 1,
-				z: 1,
-			},
+			size: new Size(0, 1, 1),
 		};
 		
 		var map = new Map();
