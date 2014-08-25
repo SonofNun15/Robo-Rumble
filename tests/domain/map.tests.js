@@ -75,8 +75,9 @@ describe ('Map', function() {
 		map.items.push(robot2);
 		map.items.push(robot3);
 		
-		map.move(robot, robot.heading);
+		var move = map.move(robot, robot.heading);
 		
+		expect(move).to.equal(false);
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
 		expect(robot.coordinate.z).to.equal(1);
