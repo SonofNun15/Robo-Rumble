@@ -33,12 +33,6 @@ describe ('Map', function() {
 		robot.coordinate = new Point(0, 0, 1);
 		robot.heading = heading.east;
 		
-		var drive = new BasicWheels(robot);
-		
-		robot.chassis = {
-			modules: [ drive ],
-		};
-		
 		var otherRobot = new Robot();
 		otherRobot.coordinate = new Point(1, 0, 1);
 		otherRobot.heading = heading.south; //heading should be irrelevant when being pushed
@@ -48,7 +42,7 @@ describe ('Map', function() {
 		map.items.push(robot);
 		map.items.push(otherRobot);
 		
-		drive.execute(instruction.move1, map);
+		map.move(robot, robot.heading);
 		
 		expect(robot.coordinate.x).to.equal(1);
 		expect(robot.coordinate.y).to.equal(0);
@@ -67,12 +61,6 @@ describe ('Map', function() {
 		robot.coordinate = new Point(0, 0, 1);
 		robot.heading = heading.east;
 		
-		var drive = new BasicWheels(robot);
-		
-		robot.chassis = {
-			modules: [ drive ],
-		};
-		
 		var robot2 = new Robot();
 		robot2.coordinate = new Point(1, 0, 1);
 		robot2.heading = heading.south; //heading should be irrelevant when being pushed
@@ -87,7 +75,7 @@ describe ('Map', function() {
 		map.items.push(robot2);
 		map.items.push(robot3);
 		
-		drive.execute(instruction.move1, map);
+		map.move(robot, robot.heading);
 		
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
