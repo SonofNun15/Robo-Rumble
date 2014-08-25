@@ -7,11 +7,7 @@ describe ('Map', function() {
 		
 		var wall = new ConcreteBlock();
 		wall.coordinate = new Point(1, 0, 1);
-		wall.size = {
-			x: 0,
-			y: 1,
-			z: 1,
-		};
+		wall.size = new Size(0, 1, 1);
 		
 		var robot = new Robot();
 		robot.coordinate = new Point(0, 0, 1);
