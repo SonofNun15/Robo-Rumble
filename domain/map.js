@@ -5,7 +5,9 @@ function Map() {
 Map.prototype.move = function(movingItem, direction) {
 	var map = this;
 	var stop;
-	var movementRay = new Ray(movingItem.coordinate.toVector(direction.add(new Point(0.5, 0.5, 0.5))));
+	//add (0.5, 0.5, 0.5) to the coordinate of the moving item to measure from the center of the space
+	var origin = movingItem.coordinate.add(new Point(0.5, 0.5, 0.5));
+	var movementRay = new Ray(origin.toVector(direction));
 	//apply some filter to the map items
 	_.each(this.items, checkForCollision);
 	if (!stop) {
