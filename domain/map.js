@@ -2,7 +2,7 @@ function Map() {
 	this.items = [];
 }
 
-Map.prototype.move = function(movingItem, direction) {
+Map.prototype.move = function(movingItem, direction, pushed) {
 	var map = this;
 	var stop;
 	//add (0.5, 0.5, 0.5) to the coordinate of the moving item to measure from the center of the space
@@ -13,6 +13,7 @@ Map.prototype.move = function(movingItem, direction) {
 	if (!stop) {
 		movingItem.coordinate = movingItem.coordinate.add(direction);
 	}
+	return !stop;
 	
 	function checkForCollision(item) {
 		if (item === movingItem) {
@@ -21,10 +22,20 @@ Map.prototype.move = function(movingItem, direction) {
 		}
 		
 		if (map.intersect(movementRay, item)) {
-			if(item.permeability === permeability.nonpermeable) {
+			if (item.permeability === permeability.nonpermeable) {
 				stop = true;
 			}
-			//if permeability is moveable, initiate a push
+			else if (item.permeability === permeability.moveable) {
+				//only one item can be pushed. If the moving item was pushed, moveable collisions are treated the same as nonpermeable
+				if (!pushed) {
+					if (map.move(item, direction, true) === false) {
+						stop = true;
+					}
+				}
+				else {
+					stop = true;
+				}
+			}
 			//call interaction functions
 		}
 	}
