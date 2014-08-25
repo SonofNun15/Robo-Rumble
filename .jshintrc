@@ -43,6 +43,7 @@
 		
 		// Domain entities
 		"Chassis"		: false,
+		"MapItem"		: false,
 		"Robot"			: false,
 		"BasicWheels"	: false,
 		
@@ -53,6 +54,7 @@
 		"Vector"		: false,
 		"Ray"			: false,
 		"heading"		: true,
+		"permeability"	: true,
 		
 		"moduleType"	: true,
 		"complexity"	: true,
