@@ -16,3 +16,21 @@ Point.prototype.add = function(relativePoint) {
 					, this.y + relativePoint.y
 					, this.z + relativePoint.z);
 };
+
+Point.prototype.inverse = function() {
+	var inverse;
+	inverse.x = invert(this.x);
+	inverse.y = invert(this.y);
+	inverse.z = invert(this.z);
+		
+	function invert(num) {
+		if (num !== 0) {
+			return 1 / num;
+		}
+		else {
+			return Number.POSITIVE_INFINITY;
+		}
+	}
+	
+	return inverse;
+};
