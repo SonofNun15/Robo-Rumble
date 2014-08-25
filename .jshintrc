@@ -44,11 +44,14 @@
 		// Domain entities
 		"Chassis"		: false,
 		"Robot"			: false,
+		"BasicWheels"	: false,
 		
 		"instruction"	: true,
 		
 		"Point"			: false,
 		"Size"			: false,
+		"Vector"		: false,
+		"heading"		: true,
 		
 		"moduleType"	: true,
 		"complexity"	: true,

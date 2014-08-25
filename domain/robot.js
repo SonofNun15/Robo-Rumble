@@ -1,4 +1,6 @@
 function Robot() {
+	this.coordinate = new Point();
+	this.heading = heading.south;
 	this.chassis = null;
 	this.mods = [];
 }

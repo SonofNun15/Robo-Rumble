@@ -20,6 +20,8 @@ module.exports = function(config) {
 		  'public/vendor/angular-mocks/angular-mocks.js',
 		  'tests/client/test-app.js',
 		  'public/app/**/*.js',
+		  'domain/common/point.js',
+		  'domain/common/*.js',
 		  'domain/**/*.js',
 		  'tests/client/**/*.tests.js',
 		  'tests/domain/**/*.tests.js'
