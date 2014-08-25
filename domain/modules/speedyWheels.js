@@ -1,4 +1,5 @@
-function SpeedyWheels() {
+function SpeedyWheels(robot) {
+	this.robot = robot;
 	this.slots = 4;
 	this.type = moduleType.drive;
 }
