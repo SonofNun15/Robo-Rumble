@@ -3,7 +3,64 @@ function Map() {
 }
 
 Map.prototype.move = function(movingItem, direction) {
-	var movementVector = movingItem.coordinate.toVector(direction);
-	//check for collision
-	movingItem.coordinate = movingItem.coordinate.add(direction);
+	var map = this;
+	var stop;
+	//add (0.5, 0.5, 0.5) to the coordinate of the moving item to measure from the center of the space
+	var origin = movingItem.coordinate.add(new Point(0.5, 0.5, 0.5));
+	var movementRay = new Ray(origin.toVector(direction));
+	//apply some filter to the map items
+	_.each(this.items, checkForCollision);
+	if (!stop) {
+		movingItem.coordinate = movingItem.coordinate.add(direction);
+	}
+	
+	function checkForCollision(item) {
+		if (item === movingItem) {
+			//item can't collide with itself
+			return;
+		}
+		
+		if (map.intersect(movementRay, item)) {
+			if(item.permeability === permeability.nonpermeable) {
+				stop = true;
+			}
+			//if permeability is moveable, initiate a push
+			//call interaction functions
+		}
+	}
+};
+
+Map.prototype.intersect = function(ray, cube) {
+	var bounds = [ cube.coordinate,
+					new Point(cube.coordinate.x + cube.size.x
+					, cube.coordinate.y + cube.size.y
+					, cube.coordinate.z + cube.size.z) ];
+
+    var minTimeToIntersect, maxTimeToIntersect, minTimeToYIntersect, maxTimeToYIntersect, minTimeToZIntersect, maxTimeToZIntersect;
+    minTimeToIntersect = (bounds[ray.sign[0]].x - ray.origin.x) * ray.invoffset.x;
+    maxTimeToIntersect = (bounds[1 - ray.sign[0]].x - ray.origin.x) * ray.invoffset.x;
+    minTimeToYIntersect = (bounds[ray.sign[1]].y - ray.origin.y) * ray.invoffset.y;
+    maxTimeToYIntersect = (bounds[1 - ray.sign[1]].y - ray.origin.y) * ray.invoffset.y;
+    if ((minTimeToIntersect > maxTimeToYIntersect) || (minTimeToYIntersect > maxTimeToIntersect))
+        return false;
+    if (minTimeToYIntersect > minTimeToIntersect)
+        minTimeToIntersect = minTimeToYIntersect;
+    if (maxTimeToYIntersect < maxTimeToIntersect)
+        maxTimeToIntersect = maxTimeToYIntersect;
+    minTimeToZIntersect = (bounds[ray.sign[2]].z - ray.origin.z) * ray.invoffset.z;
+    maxTimeToZIntersect = (bounds[1 - ray.sign[2]].z - ray.origin.z) * ray.invoffset.z;
+    if ((minTimeToIntersect > maxTimeToZIntersect) || (minTimeToZIntersect > maxTimeToIntersect))
+        return false;
+    if (minTimeToZIntersect > minTimeToIntersect)
+        minTimeToIntersect = minTimeToZIntersect;
+    if (maxTimeToZIntersect < maxTimeToIntersect)
+        maxTimeToIntersect = maxTimeToZIntersect;
+	
+	//a value of < 0 or > 1 indicates that the collision happens outside of the length of the Ray
+	if ((minTimeToIntersect > 0 && minTimeToIntersect < 1) || (maxTimeToIntersect > 0 && maxTimeToIntersect < 1)) {
+		return true;
+	}
+	else {
+		return false;
+	}
 };
