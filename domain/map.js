@@ -25,7 +25,7 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 			if (item.permeability === permeability.nonpermeable) {
 				stop = true;
 			}
-			if (item.permeability === permeability.moveable) {
+			else if (item.permeability === permeability.moveable) {
 				//only one item can be pushed. If the moving item was pushed, moveable collisions are treated the same as nonpermeable
 				if (!pushed) {
 					if (map.move(item, direction, true) === false) {
