@@ -22,11 +22,11 @@ describe('SpeedyWheels', function() {
 	
 	it ('should move two spaces', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 1);
+		floor.coordinate = new Point(0, 0, 0);
 		floor.size = new Size(3, 3, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.south;
 		
 		var drive = new SpeedyWheels(robot);
@@ -43,16 +43,16 @@ describe('SpeedyWheels', function() {
 		
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(2);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 	
 	it ('should move three spaces', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 1);
+		floor.coordinate = new Point(0, 0, 0);
 		floor.size = new Size(4, 4, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.south;
 		
 		var drive = new SpeedyWheels(robot);
@@ -69,16 +69,16 @@ describe('SpeedyWheels', function() {
 		
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(3);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 	
 	it ('should rotate right', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 1);
+		floor.coordinate = new Point(0, 0, 0);
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.east;
 		
 		var drive = new SpeedyWheels(robot);
@@ -96,16 +96,16 @@ describe('SpeedyWheels', function() {
 		expect(robot.heading).to.equal(heading.south);
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 	
 	it ('should rotate left', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 1);
+		floor.coordinate = new Point(0, 0, 0);
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.west;
 		
 		var drive = new SpeedyWheels(robot);
@@ -123,6 +123,6 @@ describe('SpeedyWheels', function() {
 		expect(robot.heading).to.equal(heading.south);
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 });
