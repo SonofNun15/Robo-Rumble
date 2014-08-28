@@ -60,7 +60,7 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 		} );
 		if (!stop) {
 			movingItem.coordinate = movingItem.coordinate.add(heading.down);
-			if (movingItem.coordinate.z <= -5) {
+			if (movingItem.coordinate.z < map.bottom) {
 				//item falls off the map
 				var index = map.items.indexOf(movingItem);
 				map.items.splice(index, 1);
@@ -70,6 +70,8 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 		}
 	}
 };
+
+Map.prototype.bottom = -5;
 
 Map.prototype.intersect = function(ray, cube) {
 	var bounds = [ cube.coordinate,
