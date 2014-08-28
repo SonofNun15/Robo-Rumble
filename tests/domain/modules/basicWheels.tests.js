@@ -27,7 +27,7 @@ describe ('BasicWheels', function() {
 	
 	it ('should move two spaces', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(3, 3, 0);
 		
 		var robot = new Robot();
@@ -53,7 +53,7 @@ describe ('BasicWheels', function() {
 	
 	it ('should rotate right', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
@@ -80,7 +80,7 @@ describe ('BasicWheels', function() {
 	
 	it ('should rotate left', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
@@ -107,7 +107,7 @@ describe ('BasicWheels', function() {
 	
 	it ('should rotate 180 degrees', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();

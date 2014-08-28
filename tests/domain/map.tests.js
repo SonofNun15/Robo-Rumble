@@ -129,7 +129,7 @@ describe ('Map', function() {
 		
 		expect(robot.coordinate.x).to.equal(1);
 		expect(robot.coordinate.y).to.equal(0);
-		expect(robot.coordinate.z).to.equal(0);
+		expect(robot.coordinate.z).to.equal(1);
 	});
 	
 	it ('should not intersect with cube below', function() {
