@@ -1,7 +1,7 @@
 describe ('Map', function() {
 	it ('should collide with wall', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(2, 2, 0);
 		
 		var wall = new ConcreteBlock();
@@ -26,7 +26,7 @@ describe ('Map', function() {
 	
 	it ('should push a robot', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(3, 3, 0);
 		
 		var robot = new Robot();
@@ -54,7 +54,7 @@ describe ('Map', function() {
 	
 	it ('should not push two robots', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(4, 4, 0);
 		
 		var robot = new Robot();
@@ -91,11 +91,11 @@ describe ('Map', function() {
 	
 	it ('should fall off the edge of the map', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(1, 1, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 0);
+		robot.coordinate = new Point(0, 0, 1);
 		robot.heading = heading.east;
 		
 		var map = new Map();
@@ -109,15 +109,15 @@ describe ('Map', function() {
 	
 	it ('should fall to a lower level', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(2, 2, 0);
 		
 		var platform = new ConcreteBlock();
-		platform.coordinate = new Point(0, 0, 0);
+		platform.coordinate = new Point(0, 0, 1);
 		platform.size = new Size(1, 1, 1);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1); // on top of the platform
+		robot.coordinate = new Point(0, 0, 2); // on top of the platform
 		robot.heading = heading.east;
 		
 		var map = new Map();

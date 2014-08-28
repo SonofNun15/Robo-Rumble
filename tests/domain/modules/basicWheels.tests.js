@@ -1,7 +1,7 @@
 describe ('BasicWheels', function() {
 	it ('should move one space', function() {
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
