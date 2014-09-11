@@ -60,6 +60,7 @@
 		"complexity"	: true,
 		
 		"Map"			: false,
+		"Scheduler"		: false,
 		"ConcreteBlock"	: false,
 		"mapItemType"	: true
 	},
