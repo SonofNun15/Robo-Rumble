@@ -55,7 +55,7 @@ Scheduler.prototype.runNext = function() {
 //
 
 Scheduler.prototype.takeRobotTurn = function(robot) {
-
+	robot.executePhase(this.phase);
 };
 
 Scheduler.prototype.takeNPCTurn = function(npc) {

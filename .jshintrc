@@ -62,7 +62,9 @@
 		"Map"			: false,
 		"Scheduler"		: false,
 		"ConcreteBlock"	: false,
-		"mapItemType"	: true
+		"mapItemType"	: true,
+		
+		"ArrayEnumerator"	: false
 	},
 	"predef"        : [ "window", "$", "alert", "document", "jQuery", "_" ],
 

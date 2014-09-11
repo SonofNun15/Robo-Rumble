@@ -36,3 +36,7 @@ Robot.prototype.getInstructionList = function(cpu) {
 	// Flatten the instruction lists and get only unique instructions
 	return _.union.apply(_, instructionLists);
 };
+
+Robot.prototype.executePhase = function(phase) {
+	
+};
