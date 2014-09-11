@@ -48,7 +48,7 @@ Scheduler.prototype.runNext = function() {
 	}
 	else if (this.boardElementEnumerator.moveNext())
 	{
-		this.takeBoardElementTurn(this.npcEnumerator.current());
+		this.takeBoardElementTurn(this.boardElementEnumerator.current());
 	}
 	else
 	{
