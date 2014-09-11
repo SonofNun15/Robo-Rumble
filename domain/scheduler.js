@@ -8,10 +8,10 @@ function Scheduler(map) {
 
 Scheduler.prototype.initTurn = function() {
 	//reinitialize the enumerators each turn, that will clean up any items that have been removed from the game
+	this.phase = 1;
 	this.robotEnumerator = new ArrayEnumerator(this.map.getRobots());
 	this.npcEnumerator = new ArrayEnumerator(this.map.getNPCs());
 	this.boardElementEnumerator = new ArrayEnumerator(this.map.getRobots());	//enumerates robots to activate the board elements nearby
-	this.phase = 0;
 };
 
 Scheduler.prototype.startNewPhase = function() {
@@ -20,7 +20,7 @@ Scheduler.prototype.startNewPhase = function() {
 		this.robotEnumerator.reset();
 		this.npcEnumerator.reset();
 		this.boardElementEnumerator.reset();
-		this.phase += 1;
+		this.phase++;
 		return true;
 	}
 	else
