@@ -85,6 +85,28 @@ describe ('Scheduler', function() {
 		expect(turns).to.equal(4);
 	});
 	
+	it ('should run all robots', function() {
+		turns = 0;
+		var game = new Game();
+		game.phasesPerTurn = 1;
+	
+		var robot1 = new RobotEmulator();
+		var robot2 = new RobotEmulator();
+		var robot3 = new RobotEmulator();
+		
+		var map = new Map();
+		map.items.push(robot1);
+		map.items.push(robot2);
+		map.items.push(robot3);
+		map.game = game;
+		
+		var scheduler = new Scheduler(map);
+		scheduler.initPhase();
+		scheduler.runAll();
+		
+		expect(turns).to.equal(3);
+	});
+	
 	function RobotEmulator() {
 		MapItem.call(this);
 		this.class = mapItemType.robot;

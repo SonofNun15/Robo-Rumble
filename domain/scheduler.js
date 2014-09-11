@@ -28,6 +28,15 @@ Scheduler.prototype.initPhase = function() {
 	}
 };
 
+Scheduler.prototype.runAll = function() {
+	var endOfTurn = !this.runNext();
+	
+	while (endOfTurn === false)
+	{
+		endOfTurn = !this.runNext();
+	}
+};
+
 Scheduler.prototype.runNext = function() {
 	if (this.robotEnumerator.moveNext())
 	{
