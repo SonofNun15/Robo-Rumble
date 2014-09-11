@@ -133,4 +133,17 @@ describe ('Map', function() {
 		
 		expect(robots).to.contain(robot);
 	});
+	
+	it ('should get all npcs', function() {
+		var npc = {
+			class: mapItemType.npc
+		};
+		
+		var map = new Map();
+		map.items.push(npc);
+		
+		var npcs = map.getNPCs();
+		
+		expect(npcs).to.contain(npc);
+	});
 });
