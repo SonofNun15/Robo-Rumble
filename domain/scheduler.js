@@ -12,7 +12,7 @@ Scheduler.prototype.newTurn = function() {
 };
 
 Scheduler.prototype.initPhase = function() {
-	if (this.phase < this.map.game.phasesPerTurn)
+	if (this.phase <= this.map.game.phasesPerTurn)
 	{
 		//reinitialize the enumerators each phase, in order to sort by priority
 		this.phase++;
