@@ -1,4 +1,5 @@
 function Map() {
+	this.game = {};
 	this.items = [];
 }
 
