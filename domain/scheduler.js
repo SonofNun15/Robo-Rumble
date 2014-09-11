@@ -22,7 +22,7 @@ Scheduler.prototype.startNewPhase = function() {
 		this.boardElementEnumerator.reset();
 		this.phase += 1;
 		return true;
-	)
+	}
 	else
 	{
 		return false;
@@ -32,15 +32,15 @@ Scheduler.prototype.startNewPhase = function() {
 Scheduler.prototype.runNext = function() {
 	if (this.robotEnumerator.moveNext())
 	{
-		this.takeRobotTurn(this.robotEnumerator.current();
+		this.takeRobotTurn(this.robotEnumerator.current());
 	}
 	else if (this.npcEnumerator.moveNext())
 	{
-		this.takeNPCTurn(this.npcEnumerator.current();
+		this.takeNPCTurn(this.npcEnumerator.current());
 	}
 	else if (this.boardElementEnumerator.moveNext())
 	{
-		this.takeBoardElementTurn(this.npcEnumerator.current();
+		this.takeBoardElementTurn(this.npcEnumerator.current());
 	}
 	else
 	{
