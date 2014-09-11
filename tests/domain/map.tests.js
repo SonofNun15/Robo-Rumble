@@ -122,4 +122,15 @@ describe ('Map', function() {
 		
 		expect(collision).to.equal(true);
 	});
+	
+	it ('should get all robots', function() {
+		var robot = new Robot();
+		
+		var map = new Map();
+		map.items.push(robot);
+		
+		var robots = map.getRobots();
+		
+		expect(robots).to.contain(robot);
+	});
 });

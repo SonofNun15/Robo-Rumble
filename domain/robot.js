@@ -1,5 +1,6 @@
 function Robot() {
 	MapItem.call(this);
+	this.class = mapItemType.robot;
 	this.permeability = permeability.moveable;
 	this.coordinate = new Point();
 	this.size = new Size(1, 1, 1);
