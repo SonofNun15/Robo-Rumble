@@ -15,7 +15,7 @@ describe ('Scheduler', function() {
 		map.game = game;
 		
 		var scheduler = new Scheduler(map);
-		scheduler.initTurn();
+		scheduler.initPhase();
 		scheduler.runNext();
 		
 		expect(turns).to.equal(1);

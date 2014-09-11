@@ -7,6 +7,7 @@ function Robot() {
 	this.heading = heading.south;
 	this.chassis = null;
 	this.mods = [];
+	this.priorities = [];
 }
 
 Robot.prototype.getAllInstructions = function(cpu) {

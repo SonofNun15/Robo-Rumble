@@ -1,26 +1,25 @@
 function Scheduler(map) {
 	this.map = map;
+	this.phase = 0;
 }
 
 //the scheduler runs each of the robot turns, followed by the npcs, and finally the board elements.
 //then optionally the robots and npcs get another chance to take an end-of-turn action.
-//the scheduler has four public functions, initTurn, startNewPhase, runNext and runAll.
+//the scheduler has four public functions, newTurn, initPhase, runNext and runAll.
 
-Scheduler.prototype.initTurn = function() {
-	//reinitialize the enumerators each turn, that will clean up any items that have been removed from the game
-	this.phase = 1;
-	this.robotEnumerator = new ArrayEnumerator(this.map.getRobots());
-	this.npcEnumerator = new ArrayEnumerator(this.map.getNPCs());
-	this.boardElementEnumerator = new ArrayEnumerator(this.map.getRobots());	//enumerates robots to activate the board elements nearby
+Scheduler.prototype.newTurn = function() {
+	this.phase = 0;
 };
 
-Scheduler.prototype.startNewPhase = function() {
+Scheduler.prototype.initPhase = function() {
 	if (this.phase < this.map.game.phasesPerTurn)
 	{
-		this.robotEnumerator.reset();
-		this.npcEnumerator.reset();
-		this.boardElementEnumerator.reset();
+		//reinitialize the enumerators each phase, in order to sort by priority
 		this.phase++;
+		var sortedRobotList = _.sortBy(this.map.getRobots(), function(robot) { return -robot.priorities[this.phase]; }, this);	//reverse the sort order so highest priorities are placed first in the list
+		this.robotEnumerator = new ArrayEnumerator(sortedRobotList);
+		this.npcEnumerator = new ArrayEnumerator(this.map.getNPCs());
+		this.boardElementEnumerator = new ArrayEnumerator(sortedRobotList);	//enumerates robots to activate the board elements nearby
 		return true;
 	}
 	else
