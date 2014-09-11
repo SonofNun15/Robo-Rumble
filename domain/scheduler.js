@@ -1,5 +1,5 @@
-function Scheduler() {
-	this.map = {};
+function Scheduler(map) {
+	this.map = map;
 }
 
 //the scheduler runs each of the robot turns, followed by the npcs, and finally the board elements.
