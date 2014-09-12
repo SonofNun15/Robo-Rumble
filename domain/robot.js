@@ -39,5 +39,15 @@ Robot.prototype.getInstructionList = function(cpu) {
 };
 
 Robot.prototype.executePhase = function(phase) {
+	var cpuEnumerator = new ArrayEnumerator(_.sortBy(this.chassis.getCPUs(), function(cpu) { return -cpu.cpuPriority; }));
 	
+	var endOfPhase = !cpuEnumerator.moveNext();
+	
+	while (endOfPhase === false)
+	{
+		cpuEnumerator.current().executeInstruction(phase);
+		endOfPhase = !cpuEnumerator.moveNext();
+	}
+	
+	_.each(this.chassis.modules, function(module) { module.refresh(); });
 };
