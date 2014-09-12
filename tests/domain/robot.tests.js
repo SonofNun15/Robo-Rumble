@@ -69,4 +69,36 @@ describe ('Robot', function() {
 		expect(instructions).to.contain(instruction.move2);
 		expect(instructions).to.contain(instruction.move3);
 	});
+	
+	var turns = 0;
+	
+	it ('should run all cpus', function() {
+		turns = 0;
+		
+		var robot = new Robot();
+	
+		var cpu1 = new CPUEmulator(robot);
+		var cpu2 = new CPUEmulator(robot);
+		var cpu3 = new CPUEmulator(robot);
+		
+		robot.chassis = new Chassis();
+		robot.chassis.modules = [ cpu1, cpu2, cpu3 ];
+		
+		robot.executePhase(1);
+		
+		expect(turns).to.equal(3);
+	});
+	
+	function CPUEmulator() {
+		this.type = moduleType.cpu;
+		this.cpuPriority = 0;
+		this.turns = 0;
+	};
+	
+	CPUEmulator.prototype.executeInstruction = function() {
+		turns++;
+		this.turns++;
+	};
+	
+	CPUEmulator.prototype.refresh = function() {};
 });
