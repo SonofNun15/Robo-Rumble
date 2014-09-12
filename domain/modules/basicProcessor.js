@@ -3,6 +3,7 @@ function BasicProcessor(robot) {
 	this.slots = 2;
 	this.instructions = [];
 	this.cpuPriority = 0;
+	this.type = moduleType.cpu;
 }
 
 BasicProcessor.prototype.getComplexityLevel = function(type) {
