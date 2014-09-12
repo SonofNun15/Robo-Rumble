@@ -1,4 +1,5 @@
 function SpeedyWheels(robot) {
+	Module.call(this);
 	this.robot = robot;
 	this.slots = 4;
 	this.type = moduleType.drive;

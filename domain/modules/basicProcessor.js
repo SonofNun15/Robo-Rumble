@@ -1,4 +1,5 @@
 function BasicProcessor(robot) {
+	Module.call(this);
 	this.robot = robot;
 	this.slots = 2;
 	this.instructions = [];

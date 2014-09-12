@@ -43,6 +43,7 @@
 		
 		// Domain entities
 		"Chassis"		: false,
+		"Module"		: false,
 		"MapItem"		: false,
 		"Robot"			: false,
 		"BasicWheels"	: false,

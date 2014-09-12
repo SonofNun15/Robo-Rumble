@@ -90,15 +90,16 @@ describe ('Robot', function() {
 	});
 	
 	function CPUEmulator() {
+		Module.call(this);
 		this.type = moduleType.cpu;
 		this.cpuPriority = 0;
 		this.turns = 0;
+		
+		this.refresh = function() {};
 	};
 	
 	CPUEmulator.prototype.executeInstruction = function() {
 		turns++;
 		this.turns++;
 	};
-	
-	CPUEmulator.prototype.refresh = function() {};
 });
