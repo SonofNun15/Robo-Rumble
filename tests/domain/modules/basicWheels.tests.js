@@ -5,7 +5,7 @@ describe ('BasicWheels', function() {
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.south;
 		
 		var drive = new BasicWheels(robot);
@@ -22,7 +22,7 @@ describe ('BasicWheels', function() {
 		
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(1);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 	
 	it ('should move two spaces', function() {
@@ -31,7 +31,7 @@ describe ('BasicWheels', function() {
 		floor.size = new Size(3, 3, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.south;
 		
 		var drive = new BasicWheels(robot);
@@ -48,7 +48,7 @@ describe ('BasicWheels', function() {
 		
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(2);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 	
 	it ('should rotate right', function() {
@@ -57,7 +57,7 @@ describe ('BasicWheels', function() {
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.east;
 		
 		var drive = new BasicWheels(robot);
@@ -75,7 +75,7 @@ describe ('BasicWheels', function() {
 		expect(robot.heading).to.equal(heading.south);
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 	
 	it ('should rotate left', function() {
@@ -84,7 +84,7 @@ describe ('BasicWheels', function() {
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.west;
 		
 		var drive = new BasicWheels(robot);
@@ -102,7 +102,7 @@ describe ('BasicWheels', function() {
 		expect(robot.heading).to.equal(heading.south);
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 	
 	it ('should rotate 180 degrees', function() {
@@ -111,7 +111,7 @@ describe ('BasicWheels', function() {
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
-		robot.coordinate = new Point(0, 0, 1);
+		robot.coordinate = new Point(0, 0, 0);
 		robot.heading = heading.north;
 		
 		var drive = new BasicWheels(robot);
@@ -129,6 +129,6 @@ describe ('BasicWheels', function() {
 		expect(robot.heading).to.equal(heading.south);
 		expect(robot.coordinate.x).to.equal(0);
 		expect(robot.coordinate.y).to.equal(0);
-		expect(robot.coordinate.z).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
 	});
 });

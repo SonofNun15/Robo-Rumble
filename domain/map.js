@@ -9,19 +9,25 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 	var origin = movingItem.coordinate.add(new Point(0.5, 0.5, 0.5));
 	var movementRay = new Ray(origin.toVector(direction));
 	//apply some filter to the map items
-	_.each(this.items, checkForCollision);
+	_.each(map.items, function(item) {
+		if (checkForCollision(item, movementRay)) {
+		stop = true;
+		}
+	} );
 	if (!stop) {
 		movingItem.coordinate = movingItem.coordinate.add(direction);
 	}
+	gravity();
 	return !stop;
 	
-	function checkForCollision(item) {
+	function checkForCollision(item, ray) {
+		var stop;
 		if (item === movingItem) {
 			//item can't collide with itself
 			return;
 		}
 		
-		if (map.intersect(movementRay, item)) {
+		if (map.intersect(ray, item)) {
 			if (item.permeability === permeability.nonpermeable) {
 				stop = true;
 			}
@@ -38,8 +44,34 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 			}
 			//call interaction functions
 		}
+		return stop;
+	}
+	
+	function gravity() {
+		var stop = false;
+		//add (0.5, 0.5, 0.5) to the coordinate of the moving item to measure from the center of the space
+		var origin = movingItem.coordinate.add(new Point(0.5, 0.5, 0.5));
+		var movementRay = new Ray(origin.toVector(heading.down));
+		//apply some filter to the map items
+		_.each(map.items, function(item) {
+			if (checkForCollision(item, movementRay)) {
+			stop = true;
+			}
+		} );
+		if (!stop) {
+			movingItem.coordinate = movingItem.coordinate.add(heading.down);
+			if (movingItem.coordinate.z < map.bottom) {
+				//item falls off the map
+				var index = map.items.indexOf(movingItem);
+				map.items.splice(index, 1);
+				return;
+			}
+			gravity();
+		}
 	}
 };
+
+Map.prototype.bottom = -5;
 
 Map.prototype.intersect = function(ray, cube) {
 	var bounds = [ cube.coordinate,
