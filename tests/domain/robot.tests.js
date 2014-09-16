@@ -102,4 +102,33 @@ describe ('Robot', function() {
 		turns++;
 		this.turns++;
 	};
+	
+	it ('should run the instruction and move 1 space', function() {
+		//integration test for robot, cpu, programInstruction, drive, and map
+		var floor = new ConcreteBlock();
+		floor.coordinate = new Point(0, 0, 0);
+		floor.size = new Size(2, 2, 0);
+		
+		var robot = new Robot();
+		robot.coordinate = new Point(0, 0, 1);
+		robot.heading = heading.south;
+		
+		var drive = new BasicWheels(robot);
+	
+		var cpu = new BasicProcessor(robot);
+		cpu.instructions = [ 0, new ProgramInstruction(drive, instruction.move1) ];
+		
+		robot.chassis = new Chassis();
+		robot.chassis.modules = [ cpu, drive ];
+		
+		var map = new Map();
+		map.items.push(floor);
+		map.items.push(robot);
+		
+		robot.executePhase(1, map);
+		
+		expect(robot.coordinate.x).to.equal(0);
+		expect(robot.coordinate.y).to.equal(1);
+		expect(robot.coordinate.z).to.equal(1);
+	});
 });
