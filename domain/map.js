@@ -1,6 +1,15 @@
 function Map() {
+	this.game = {};
 	this.items = [];
 }
+
+Map.prototype.getRobots = function() {
+	return _.filter(this.items, function(item) { return item.class == mapItemType.robot; });
+};
+
+Map.prototype.getNPCs = function() {
+	return _.filter(this.items, function(item) { return item.class == mapItemType.npc; });
+};
 
 Map.prototype.move = function(movingItem, direction, pushed) {
 	var map = this;

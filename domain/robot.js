@@ -1,11 +1,13 @@
 function Robot() {
 	MapItem.call(this);
+	this.class = mapItemType.robot;
 	this.permeability = permeability.moveable;
 	this.coordinate = new Point();
 	this.size = new Size(1, 1, 1);
 	this.heading = heading.south;
 	this.chassis = null;
 	this.mods = [];
+	this.priorities = [];
 }
 
 Robot.prototype.getAllInstructions = function(cpu) {
@@ -34,4 +36,8 @@ Robot.prototype.getInstructionList = function(cpu) {
 	
 	// Flatten the instruction lists and get only unique instructions
 	return _.union.apply(_, instructionLists);
+};
+
+Robot.prototype.executePhase = function(phase) {
+	
 };

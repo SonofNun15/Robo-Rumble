@@ -60,7 +60,11 @@
 		"complexity"	: true,
 		
 		"Map"			: false,
-		"ConcreteBlock"	: false
+		"Scheduler"		: false,
+		"ConcreteBlock"	: false,
+		"mapItemType"	: true,
+		
+		"ArrayEnumerator"	: false
 	},
 	"predef"        : [ "window", "$", "alert", "document", "jQuery", "_" ],
 

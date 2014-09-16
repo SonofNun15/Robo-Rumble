@@ -165,4 +165,28 @@ describe ('Map', function() {
 		
 		expect(collision).to.equal(true);
 	});
+	
+	it ('should get all robots', function() {
+		var robot = new Robot();
+		
+		var map = new Map();
+		map.items.push(robot);
+		
+		var robots = map.getRobots();
+		
+		expect(robots).to.contain(robot);
+	});
+	
+	it ('should get all npcs', function() {
+		var npc = {
+			class: mapItemType.npc
+		};
+		
+		var map = new Map();
+		map.items.push(npc);
+		
+		var npcs = map.getNPCs();
+		
+		expect(npcs).to.contain(npc);
+	});
 });
