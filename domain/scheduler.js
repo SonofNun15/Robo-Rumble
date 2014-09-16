@@ -63,7 +63,7 @@ Scheduler.prototype.runNext = function() {
 //
 
 Scheduler.prototype.takeRobotTurn = function(robot) {
-	robot.executePhase(this.phase);
+	robot.executePhase(this.phase, this.map);	//the map needs to get to the executing modules somehow. This may not be the best way to do it, but it'll work for now.
 };
 
 Scheduler.prototype.takeNPCTurn = function(npc) {

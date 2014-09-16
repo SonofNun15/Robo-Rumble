@@ -38,14 +38,14 @@ Robot.prototype.getInstructionList = function(cpu) {
 	return _.union.apply(_, instructionLists);
 };
 
-Robot.prototype.executePhase = function(phase) {
+Robot.prototype.executePhase = function(phase, map) {
 	var cpuEnumerator = new ArrayEnumerator(_.sortBy(this.chassis.getCPUs(), function(cpu) { return -cpu.cpuPriority; }));
 	
 	var endOfPhase = !cpuEnumerator.moveNext();
 	
 	while (endOfPhase === false)
 	{
-		cpuEnumerator.current().executeInstruction(phase);
+		cpuEnumerator.current().executeInstruction(phase, map);
 		endOfPhase = !cpuEnumerator.moveNext();
 	}
 	
