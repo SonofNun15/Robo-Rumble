@@ -49,5 +49,5 @@ Robot.prototype.executePhase = function(phase, map) {
 		endOfPhase = !cpuEnumerator.moveNext();
 	}
 	
-	_.each(this.chassis.modules, function(module) { module.refresh(); });
+	// _.each(this.chassis.modules, function(module) { module.refresh(); });
 };
