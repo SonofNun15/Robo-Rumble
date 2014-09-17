@@ -1,4 +1,5 @@
 function BasicWheels(robot) {
+	Module.call(this);
 	this.robot = robot;
 	this.slots = 4;
 }
