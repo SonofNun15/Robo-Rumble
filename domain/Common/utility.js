@@ -5,4 +5,8 @@ utility.sortByDescendingNumeric = function(collection, callback, thisArg) {
 	{
 		return _.sortBy(collection, function(item) { return -callback(item, thisArg); });
 	}
+	else
+	{
+		return _.sortBy(collection, function(item) { return -item[callback]; });
+	}
 };
