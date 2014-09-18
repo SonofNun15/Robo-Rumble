@@ -106,7 +106,7 @@ describe ('Robot', function() {
 	it ('should run the instruction and move 1 space', function() {
 		//integration test for robot, cpu, programInstruction, drive, and map
 		var floor = new ConcreteBlock();
-		floor.coordinate = new Point(0, 0, 0);
+		floor.coordinate = new Point(0, 0, 1);
 		floor.size = new Size(2, 2, 0);
 		
 		var robot = new Robot();
