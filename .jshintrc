@@ -65,7 +65,8 @@
 		"ConcreteBlock"	: false,
 		"mapItemType"	: true,
 		
-		"ArrayEnumerator"	: false
+		"ArrayEnumerator"	: false,
+		"utility"		: true
 	},
 	"predef"        : [ "window", "$", "alert", "document", "jQuery", "_" ],
 

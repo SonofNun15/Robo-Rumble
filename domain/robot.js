@@ -39,7 +39,7 @@ Robot.prototype.getInstructionList = function(cpu) {
 };
 
 Robot.prototype.executePhase = function(phase, map) {
-	var cpus = _.sortBy(this.chassis.getCPUs(), function(cpu) { return -cpu.cpuPriority; });
+	var cpus = utility.sortByDescending(this.chassis.getCPUs(), function(cpu) { return cpu.cpuPriority; });
 	
 	cpus.forEach(function(cpu) {
 		cpu.executeInstruction(phase, map);
