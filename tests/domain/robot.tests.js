@@ -116,7 +116,7 @@ describe ('Robot', function() {
 		var drive = new BasicWheels(robot);
 	
 		var cpu = new BasicProcessor(robot);
-		cpu.instructions = [ 0, new ProgramInstruction(drive, instruction.move1) ];
+		cpu.instructions = { '1': new ProgramInstruction(drive, instruction.move1) };
 		
 		robot.chassis = new Chassis();
 		robot.chassis.modules = [ cpu, drive ];

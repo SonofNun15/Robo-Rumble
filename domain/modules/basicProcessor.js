@@ -19,5 +19,5 @@ BasicProcessor.prototype.getComplexityLevel = function(type) {
 };
 
 BasicProcessor.prototype.executeInstruction = function(phase, map) {
-	this.instructions[phase].execute(map);
+	utility.get(this.instructions, phase).execute(map);
 };
