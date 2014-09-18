@@ -179,7 +179,7 @@ describe ('Map', function() {
 	
 	it ('should get all npcs', function() {
 		var npc = {
-			class: mapItemType.npc
+			type: mapItemType.npc
 		};
 		
 		var map = new Map();

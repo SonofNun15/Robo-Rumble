@@ -109,7 +109,7 @@ describe ('Scheduler', function() {
 	
 	function RobotEmulator() {
 		MapItem.call(this);
-		this.class = mapItemType.robot;
+		this.type = mapItemType.robot;
 		this.priorities = [];
 		this.turns = 0;
 	};

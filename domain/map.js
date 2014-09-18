@@ -4,11 +4,11 @@ function Map() {
 }
 
 Map.prototype.getRobots = function() {
-	return _.filter(this.items, function(item) { return item.class == mapItemType.robot; });
+	return _.filter(this.items, function(item) { return item.type == mapItemType.robot; });
 };
 
 Map.prototype.getNPCs = function() {
-	return _.filter(this.items, function(item) { return item.class == mapItemType.npc; });
+	return _.filter(this.items, function(item) { return item.type == mapItemType.npc; });
 };
 
 Map.prototype.move = function(movingItem, direction, pushed) {
