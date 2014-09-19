@@ -27,10 +27,10 @@ describe ('Scheduler', function() {
 		game.phasesPerTurn = 1;
 	
 		var robot1 = new RobotEmulator();
-		robot1.priorities = [ 0, 300 ];		//turn phases are 1 based, so the first priority will always be ignored
+		robot1.priorities = { '1': 300 };		//turn phases are 1 based, so the first priority will always be ignored
 		
 		var robot2 = new RobotEmulator();
-		robot2.priorities = [ 0, 350 ];
+		robot2.priorities = { '1': 350 };
 		
 		var map = new Map();
 		map.items.push(robot1);
@@ -52,10 +52,10 @@ describe ('Scheduler', function() {
 		game.phasesPerTurn = 2;
 	
 		var robot1 = new RobotEmulator();
-		robot1.priorities = [ 0, 300, 375 ];
+		robot1.priorities = { '1': 300, '2': 375 };
 		
 		var robot2 = new RobotEmulator();
-		robot2.priorities = [ 0, 350, 275 ];
+		robot2.priorities = { '1': 350, '2': 275 };
 		
 		var map = new Map();
 		map.items.push(robot1);
@@ -109,7 +109,7 @@ describe ('Scheduler', function() {
 	
 	function RobotEmulator() {
 		MapItem.call(this);
-		this.class = mapItemType.robot;
+		this.type = mapItemType.robot;
 		this.priorities = [];
 		this.turns = 0;
 	};

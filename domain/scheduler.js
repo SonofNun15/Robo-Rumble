@@ -16,7 +16,7 @@ Scheduler.prototype.initPhase = function() {
 	{
 		//reinitialize the enumerators each phase, in order to sort by priority
 		this.phase++;
-		var sortedRobotList = utility.sortByDescendingNumeric(this.map.getRobots(), function(robot, thisArg) { return robot.priorities[thisArg.phase]; }, this);
+		var sortedRobotList = utility.sortByDescendingNumeric(this.map.getRobots(), function(robot, thisArg) { return utility.get(robot.priorities, thisArg.phase); }, this);
 		this.robotEnumerator = new ArrayEnumerator(sortedRobotList);
 		this.npcEnumerator = new ArrayEnumerator(this.map.getNPCs());
 		this.boardElementEnumerator = new ArrayEnumerator(sortedRobotList);	//enumerates robots to activate the board elements nearby
