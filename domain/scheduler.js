@@ -72,15 +72,10 @@ Scheduler.prototype.takeNPCTurn = function(npc) {
 
 Scheduler.prototype.takeBoardElementTurn = function(robot) {
 	// cycle through each boardElement priority level
-	for (int i = 9; i >= 0; i--)
+	for (var i = 9; i >= 0; i--)
 	{
 		var elements = _.filter(this.map.getBoardElements(), touchesRobotSpace);
-		_.each(elements, function(element) { 
-			if (utility.get(element.priority, i) == true)
-			{
-				element.execute(robot);
-			}
-		});
+		_.each(elements, run);
 	}
 	
 	function touchesRobotSpace(element) {
@@ -88,5 +83,12 @@ Scheduler.prototype.takeBoardElementTurn = function(robot) {
 				|| robot.coordinate == element.coordinate.add(new Point(1, 0, 0))	//touches the right side of the robot's space
 				|| robot.coordinate == element.coordinate.add(new Point(0, 1, 0))	//touches the south side of the robot's space
 				|| robot.coordinate == element.coordinate.add(new Point(0, 0, 1));	//touches the top of the robot's space
-	};
+	}
+	
+	function run(element) {
+		if (utility.get(element.priority, i) === true)
+		{
+			element.execute(robot);
+		}
+	}
 };
