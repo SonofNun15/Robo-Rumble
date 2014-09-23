@@ -79,10 +79,10 @@ Scheduler.prototype.takeBoardElementTurn = function(robot) {
 	}
 	
 	function touchesRobotSpace(element) {
-		return robot.coordinate == element.coordinate
-				|| robot.coordinate == element.coordinate.add(new Point(1, 0, 0))	//touches the right side of the robot's space
-				|| robot.coordinate == element.coordinate.add(new Point(0, 1, 0))	//touches the south side of the robot's space
-				|| robot.coordinate == element.coordinate.add(new Point(0, 0, 1));	//touches the top of the robot's space
+		return element.coordinate.equals(robot.coordinate)
+				|| element.coordinate.equals(robot.coordinate.add(new Point(1, 0, 0)))	//touches the right side of the robot's space
+				|| element.coordinate.equals(robot.coordinate.add(new Point(0, 1, 0)))	//touches the south side of the robot's space
+				|| element.coordinate.equals(robot.coordinate.add(new Point(0, 0, 1)));	//touches the top of the robot's space
 	}
 	
 	function run(element) {
