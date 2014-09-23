@@ -46,4 +46,34 @@ describe ('ConveyorBelt', function() {
 		expect(robot.coordinate.y).to.equal(1);
 		expect(robot.coordinate.z).to.equal(0);
 	});
+	
+	it ('should turn the robot if the conveyer belt turns', function() {
+		var belt1 = new ConveyorBelt();
+		belt1.coordinate = new Point(0, 0, 0);
+		belt1.heading = heading.south;
+		
+		var belt2 = new ConveyorBelt();
+		belt2.coordinate = new Point(0, 1, 0);
+		belt2.heading = heading.east;
+		
+		var floor = new ConcreteBlock();
+		floor.coordinate = new Point(0, 0, 0);
+		floor.size = new Size(2, 2, 0);
+		
+		var robot = new Robot();
+		robot.coordinate = new Point(0, 0, 0);
+		robot.heading = heading.east;
+		
+		var map = new Map();
+		map.items.push(belt1);
+		map.items.push(belt2);
+		map.items.push(floor);
+		map.items.push(robot);
+		
+		belt1.execute(robot, map);
+		
+		expect(robot.heading.x).to.equal(heading.north.x);	//90 counterclockwise from east should be north
+		expect(robot.heading.y).to.equal(heading.north.y);
+		expect(robot.heading.z).to.equal(heading.north.z);
+	});
 });
