@@ -1,6 +1,7 @@
 function ConveyerBelt() {
 	MapItem.call(this);
 	this.type = mapItemType.boardElement;
+	this.isConveyerBelt = true;
 	this.coordinate = new Point();
 	this.size = new Size(1, 1, 0);
 	this.heading = heading.south;
@@ -16,17 +17,13 @@ ConveyerBelt.prototype.execute = function(robot, map) {
 		
 		if (currentCoordinate != robot.coordinate)
 		{
-			var targetBelt = _.first(_.filter(map.getBoardElements(), function(element) { return robot.coordinate.equals(element.coordinate.add(heading.up)) && element.isConveyerBelt(); }));
+			var targetBelt = _.first(_.filter(map.getBoardElements(), function(element) { return robot.coordinate.equals(element.coordinate.add(heading.up)) && element.isConveyerBelt; }));
 			if (targetBelt.heading != this.heading)
 			{
 				this.turn(robot, targetBelt);
 			}
 		}
 	}
-};
-
-ConveyerBelt.prototype.isConveyerBelt = function() {
-	return true;
 };
 
 ConveyerBelt.prototype.turn = function(robot, targetBelt) {
