@@ -189,4 +189,17 @@ describe ('Map', function() {
 		
 		expect(npcs).to.contain(npc);
 	});
+	
+	it ('should get all board elements', function() {
+		var boardElement = {
+			type: mapItemType.boardElement
+		};
+		
+		var map = new Map();
+		map.items.push(boardElement);
+		
+		var boardElements = map.getBoardElements();
+		
+		expect(boardElements).to.contain(boardElement);
+	});
 });
