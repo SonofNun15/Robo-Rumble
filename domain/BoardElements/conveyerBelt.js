@@ -11,13 +11,13 @@ function ConveyerBelt() {
 ConveyerBelt.prototype.execute = function(robot, map) {
 	var currentCoordinate = robot.coordinate;
 	
-	if (robot.coordinate.equals(this.coordinate.add(heading.up)))
+	if (robot.coordinate.equals(this.coordinate))
 	{
 		map.move(robot, this.heading);
 		
 		if (currentCoordinate != robot.coordinate)
 		{
-			var targetBelt = _.first(_.filter(map.getBoardElements(), function(element) { return robot.coordinate.equals(element.coordinate.add(heading.up)) && element.isConveyerBelt; }));
+			var targetBelt = _.first(_.filter(map.getBoardElements(), function(element) { return robot.coordinate.equals(element.coordinate) && element.isConveyerBelt; }));
 			if (targetBelt.heading != this.heading)
 			{
 				this.turn(robot, targetBelt);
