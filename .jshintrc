@@ -63,6 +63,7 @@
 		"Map"			: false,
 		"Scheduler"		: false,
 		"ConcreteBlock"	: false,
+		"ConveyorBelt"	: false,
 		"mapItemType"	: true,
 		
 		"ArrayEnumerator"	: false,
