@@ -55,6 +55,7 @@
 		"Vector"		: false,
 		"Ray"			: false,
 		"heading"		: true,
+		"spin"			: true,
 		"permeability"	: true,
 		
 		"moduleType"	: true,
