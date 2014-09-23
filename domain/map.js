@@ -113,8 +113,12 @@ Map.prototype.intersect = function(ray, cube) {
         maxTimeToIntersect = maxTimeToZIntersect;
 	
 	//a value of < 0 or > 1 indicates that the collision happens outside of the length of the Ray
-	if ((minTimeToIntersect > 0 && minTimeToIntersect < 1) || (maxTimeToIntersect > 0 && maxTimeToIntersect < 1)) {
+	if (minTimeToIntersect >= 0 && minTimeToIntersect <= 1) {
 		return true;
+	}
+	else if (maxTimeToIntersect >= 0 && maxTimeToIntersect <= 1) {
+		//indicates that the ray begins within the cube
+		return false;
 	}
 	else {
 		return false;
