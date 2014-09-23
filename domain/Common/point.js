@@ -17,6 +17,12 @@ Point.prototype.add = function(relativePoint) {
 					, this.z + relativePoint.z);
 };
 
+Point.prototype.equals = function(point) {
+	return (this.x == point.x
+			&& this.y == point.y
+			&& this.z == point.z);
+};
+
 Point.prototype.inverse = function() {
 	var inverse = new Point(invert(this.x), invert(this.y), invert(this.z));
 		
