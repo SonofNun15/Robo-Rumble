@@ -71,8 +71,7 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 			movingItem.coordinate = movingItem.coordinate.add(heading.down);
 			if (movingItem.coordinate.z < map.bottom) {
 				//item falls off the map
-				var index = map.items.indexOf(movingItem);
-				map.items.splice(index, 1);
+				map.items.remove(movingItem);
 				return;
 			}
 			gravity();
