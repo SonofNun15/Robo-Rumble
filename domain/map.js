@@ -18,8 +18,8 @@ Map.prototype.getBoardElements = function() {
 Map.prototype.move = function(movingItem, direction, pushed) {
 	var map = this;
 	var stop;
-	//add (0.5, 0.5, 0.5) to the coordinate of the moving item to measure from the center of the space
-	var origin = movingItem.coordinate.add(new Point(0.5, 0.5, 0.5));
+	//add half the moving item's size to the coordinate of the moving item to measure from the center of the item
+	var origin = movingItem.coordinate.add(movingItem.size.divide(2));
 	var movementRay = new Ray(origin.toVector(direction));
 	//apply some filter to the map items
 	_.each(map.items, function(item) {
