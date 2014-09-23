@@ -27,11 +27,11 @@ ConveyorBelt.prototype.execute = function(robot, map) {
 };
 
 ConveyorBelt.prototype.turn = function(robot, targetBelt) {
-	if (targetBelt.heading.equals(heading.clockwise(this.coordinate)))
+	if (targetBelt.heading.equals(heading.clockwise(this.heading)))
 	{
 		robot.coordinate = heading.clockwise(robot.coordinate);
 	}
-	else if (targetBelt.heading.equals(heading.counterclockwise(this.coordinate)))
+	else if (targetBelt.heading.equals(heading.counterclockwise(this.heading)))
 	{
 		robot.coordinate = heading.counterclockwise(robot.coordinate);
 	}
