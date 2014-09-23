@@ -75,7 +75,7 @@ Scheduler.prototype.takeBoardElementTurn = function(robot) {
 	for (var i = 9; i >= 0; i--)
 	{
 		var elements = _.filter(this.map.getBoardElements(), touchesRobotSpace);
-		_.each(elements, run);
+		_.each(elements, run, this);
 	}
 	
 	function touchesRobotSpace(element) {
@@ -88,7 +88,7 @@ Scheduler.prototype.takeBoardElementTurn = function(robot) {
 	function run(element) {
 		if (utility.get(element.priority, i) === true)
 		{
-			element.execute(robot);
+			element.execute(robot, this.map, this.phase);
 		}
 	}
 };
