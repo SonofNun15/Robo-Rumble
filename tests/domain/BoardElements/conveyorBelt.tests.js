@@ -21,4 +21,29 @@ describe ('ConveyorBelt', function() {
 		expect(belts).to.not.contain(boardElement1);
 		expect(belts).to.not.contain(boardElement2);
 	});
+	
+	it ('should push the robot one space', function() {
+		var belt = new ConveyorBelt();
+		belt.coordinate = new Point(0, 0, 0);
+		belt.heading = heading.south;
+		
+		var floor = new ConcreteBlock();
+		floor.coordinate = new Point(0, 0, 0);
+		floor.size = new Size(2, 2, 0);
+		
+		var robot = new Robot();
+		robot.coordinate = new Point(0, 0, 0);
+		robot.heading = heading.east;	//heading should be irrelevant, test should break if not
+		
+		var map = new Map();
+		map.items.push(belt);
+		map.items.push(floor);
+		map.items.push(robot);
+		
+		belt.execute(robot, map);
+		
+		expect(robot.coordinate.x).to.equal(0);
+		expect(robot.coordinate.y).to.equal(1);
+		expect(robot.coordinate.z).to.equal(0);
+	});
 });

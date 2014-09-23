@@ -18,7 +18,7 @@ ConveyorBelt.prototype.execute = function(robot, map) {
 		if (currentCoordinate != robot.coordinate)
 		{
 			var targetBelt = _.first(_.filter(map.getBoardElements(), function(element) { return robot.coordinate.equals(element.coordinate) && element.isConveyorBelt; }));
-			if (targetBelt.heading != this.heading)
+			if (targetBelt != null && targetBelt.heading != this.heading)
 			{
 				this.turn(robot, targetBelt);
 			}
