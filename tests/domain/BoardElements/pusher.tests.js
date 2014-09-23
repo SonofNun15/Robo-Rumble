@@ -2,7 +2,7 @@ describe ('Pusher', function() {
 	it ('should push the robot one space', function() {
 		var pusher = new Pusher();
 		pusher.coordinate = new Point(0, 0, 0);
-		pusher.heading = heading.south;
+		pusher.setHeading(heading.south);
 		pusher.activePhases = { '1': true };
 		
 		var floor = new ConcreteBlock();
@@ -28,7 +28,7 @@ describe ('Pusher', function() {
 	it ('should not push two robots', function() {
 		var pusher = new Pusher();
 		pusher.coordinate = new Point(0, 0, 0);
-		pusher.heading = heading.south;
+		pusher.setHeading(heading.south);
 		pusher.activePhases = { '1': true };
 		
 		var floor = new ConcreteBlock();
