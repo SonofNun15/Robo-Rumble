@@ -24,9 +24,9 @@ Point.prototype.equals = function(point) {
 };
 
 Point.prototype.divide = function(divisor) {
-	this.x /= divisor;
-	this.y /= divisor;
-	this.z /= divisor;
+	return new Point(this.x /= divisor
+					, this.y /= divisor
+					, this.z /= divisor);
 };
 
 Point.prototype.inverse = function() {
