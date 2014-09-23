@@ -1,6 +1,6 @@
-describe ('ConveyerBelt', function() {
-	it ('should filter by conveyer belt using isConveyerBelt', function() {
-		var belt = new ConveyerBelt();
+describe ('ConveyorBelt', function() {
+	it ('should filter by Conveyor belt using isConveyorBelt', function() {
+		var belt = new ConveyorBelt();
 		
 		var boardElement1 = {
 			type: mapItemType.boardElement
@@ -15,7 +15,7 @@ describe ('ConveyerBelt', function() {
 		map.items.push(boardElement1);
 		map.items.push(boardElement2);
 		
-		var belts = _.filter(map.getBoardElements(), function(element) { return element.isConveyerBelt; });
+		var belts = _.filter(map.getBoardElements(), function(element) { return element.isConveyorBelt; });
 		
 		expect(belts).to.contain(belt);
 		expect(belts).to.not.contain(boardElement1);
