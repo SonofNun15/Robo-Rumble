@@ -59,6 +59,7 @@
 		
 		"moduleType"	: true,
 		"complexity"	: true,
+		"boardElementPriorities" : true,
 		
 		"Map"			: false,
 		"Scheduler"		: false,

@@ -72,7 +72,7 @@ Scheduler.prototype.takeNPCTurn = function(npc) {
 
 Scheduler.prototype.takeBoardElementTurn = function(robot) {
 	// cycle through each boardElement priority level
-	for (var i = 9; i >= 0; i--)
+	for (var i = boardElementPriorities.highest; i >= 0; i--)
 	{
 		var elements = _.filter(this.map.getBoardElements(), touchesRobotSpace);
 		_.each(elements, run, this);
