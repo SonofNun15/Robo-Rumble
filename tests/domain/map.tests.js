@@ -169,12 +169,24 @@ describe ('Map', function() {
 	it ('should get all robots', function() {
 		var robot = new Robot();
 		
+		var npc = {
+			type: mapItemType.npc
+		};
+		
+		var boardElement = {
+			type: mapItemType.boardElement
+		};
+		
 		var map = new Map();
 		map.items.push(robot);
+		map.items.push(npc);
+		map.items.push(boardElement);
 		
 		var robots = map.getRobots();
 		
 		expect(robots).to.contain(robot);
+		expect(robots).to.not.contain(npc);
+		expect(robots).to.not.contain(boardElement);
 	});
 	
 	it ('should get all npcs', function() {
@@ -182,11 +194,44 @@ describe ('Map', function() {
 			type: mapItemType.npc
 		};
 		
+		var boardElement = {
+			type: mapItemType.boardElement
+		};
+		
+		var robot = new Robot();
+		
 		var map = new Map();
 		map.items.push(npc);
+		map.items.push(boardElement);
+		map.items.push(robot);
 		
 		var npcs = map.getNPCs();
 		
 		expect(npcs).to.contain(npc);
+		expect(npcs).to.not.contain(boardElement);
+		expect(npcs).to.not.contain(robot);
+	});
+	
+	it ('should get all board elements', function() {
+		var boardElement = {
+			type: mapItemType.boardElement
+		};
+		
+		var npc = {
+			type: mapItemType.npc
+		};
+		
+		var robot = new Robot();
+		
+		var map = new Map();
+		map.items.push(boardElement);
+		map.items.push(npc);
+		map.items.push(robot);
+		
+		var boardElements = map.getBoardElements();
+		
+		expect(boardElements).to.contain(boardElement);
+		expect(boardElements).to.not.contain(npc);
+		expect(boardElements).to.not.contain(robot);
 	});
 });

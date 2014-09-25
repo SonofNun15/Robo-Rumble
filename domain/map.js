@@ -11,6 +11,10 @@ Map.prototype.getNPCs = function() {
 	return _.filter(this.items, function(item) { return item.type == mapItemType.npc; });
 };
 
+Map.prototype.getBoardElements = function() {
+	return _.filter(this.items, function(item) { return item.type == mapItemType.boardElement; });
+};
+
 Map.prototype.move = function(movingItem, direction, pushed) {
 	var map = this;
 	var stop;

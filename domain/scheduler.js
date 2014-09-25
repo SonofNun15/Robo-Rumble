@@ -70,6 +70,25 @@ Scheduler.prototype.takeNPCTurn = function(npc) {
 
 };
 
-Scheduler.prototype.takeBoardElementTurn = function(boardElement) {
-
+Scheduler.prototype.takeBoardElementTurn = function(robot) {
+	// cycle through each boardElement priority level
+	for (var i = boardElementPriorities.highest; i >= 0; i--)
+	{
+		var elements = _.filter(this.map.getBoardElements(), touchesRobotSpace);
+		_.each(elements, run, this);
+	}
+	
+	function touchesRobotSpace(element) {
+		return element.coordinate.equals(robot.coordinate)
+				|| element.coordinate.equals(robot.coordinate.add(new Point(1, 0, 0)))	//touches the right side of the robot's space
+				|| element.coordinate.equals(robot.coordinate.add(new Point(0, 1, 0)))	//touches the south side of the robot's space
+				|| element.coordinate.equals(robot.coordinate.add(new Point(0, 0, 1)));	//touches the top of the robot's space
+	}
+	
+	function run(element) {
+		if (utility.get(element.priority, i) === true)
+		{
+			element.execute(robot, this.map, this.phase);
+		}
+	}
 };

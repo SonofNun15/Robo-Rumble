@@ -8,31 +8,31 @@ heading = {
 };
 
 heading.clockwise = function(point) {
-	if (point === heading.north) {
+	if (point.equals(heading.north)) {
 		return heading.east;
 	}
-	else if (point === heading.south) {
+	else if (point.equals(heading.south)) {
 		return heading.west;
 	}
-	else if (point === heading.east) {
+	else if (point.equals(heading.east)) {
 		return heading.south;
 	}
-	else if (point === heading.west) {
+	else if (point.equals(heading.west)) {
 		return heading.north;
 	}
 };
 
 heading.counterclockwise = function(point) {
-	if (point === heading.north) {
+	if (point.equals(heading.north)) {
 		return heading.west;
 	}
-	else if (point === heading.south) {
+	else if (point.equals(heading.south)) {
 		return heading.east;
 	}
-	else if (point === heading.east) {
+	else if (point.equals(heading.east)) {
 		return heading.north;
 	}
-	else if (point === heading.west) {
+	else if (point.equals(heading.west)) {
 		return heading.south;
 	}
 };
