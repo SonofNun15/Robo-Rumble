@@ -10,6 +10,6 @@ function Gear() {
 Gear.prototype.execute = function(robot, map) {
 	if (robot.coordinate.equals(this.coordinate))
 	{
-		robot.heading = spin.rotate(this.spin, robot.heading);
+		robot.heading = heading.rotate(this.spin, robot.heading);
 	}
 };
