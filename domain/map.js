@@ -114,7 +114,7 @@ Map.prototype.intersect = function(ray, cube) {
 	
 	//a value of < ray.startTime or > ray.endTime indicates that the collision happens outside of the length of the Ray
 	if (minTimeToIntersect > ray.startTime && minTimeToIntersect < ray.endTime) {
-		return ray.collisionPoint(minTimeToIntersect);
+		return true;
 	}
 	else if (maxTimeToIntersect >= ray.startTime && maxTimeToIntersect <= ray.endTime) {
 		//indicates that the ray begins within the cube
