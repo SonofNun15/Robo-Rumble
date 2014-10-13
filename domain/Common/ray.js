@@ -28,3 +28,8 @@ Ray.prototype.destination = function() {
 	var distance = this.offset.multiply(this.endTime - this.startTime);
 	return this.origin.add(distance);
 };
+
+Ray.prototype.collisionPoint = function(time) {
+	var distance = this.offset.multiply(time - this.startTime);
+	return this.origin.add(distance);
+};
