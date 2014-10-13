@@ -163,7 +163,7 @@ describe ('Map', function() {
 		
 		var collision = map.intersect(ray, cube);
 		
-		expect(collision).to.equal(true);
+		expect(collision).to.not.be.false;
 	});
 	
 	it ('should get all robots', function() {
