@@ -23,12 +23,6 @@ Point.prototype.equals = function(point) {
 			&& this.z == point.z);
 };
 
-Point.prototype.multiply = function(num) {
-	return new Point(this.x * num
-					, this.y * num
-					, this.z * num);
-};
-
 Point.prototype.inverse = function() {
 	var inverse = new Point(invert(this.x), invert(this.y), invert(this.z));
 		
