@@ -23,3 +23,8 @@ function Ray(vector, startTime, endTime) {
 		this.endTime = 1;
 	}
 }
+
+Ray.prototype.destination = function() {
+	var distance = this.offset.multiply(this.endTime - this.startTime);
+	return this.origin.add(distance);
+};
