@@ -47,6 +47,7 @@
 		"MapItem"		: false,
 		"Robot"			: false,
 		"BasicWheels"	: false,
+		"Sensor"		: false,
 		
 		"instruction"	: true,
 		

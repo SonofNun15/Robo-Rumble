@@ -3,6 +3,10 @@ function Map() {
 	this.items = [];
 }
 
+Map.prototype.getAllItems = function() {
+	return this.items;
+};
+
 Map.prototype.getRobots = function() {
 	return _.filter(this.items, function(item) { return item.type == mapItemType.robot; });
 };
