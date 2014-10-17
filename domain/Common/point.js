@@ -29,6 +29,18 @@ Point.prototype.multiply = function(num) {
 					, this.z * num);
 };
 
+Point.prototype.distance = function(destination) {
+	// distance of the line from this to destination using the formula d^2 = x^2 + y^2 + z^2
+	if (destination == null)
+	{
+		destination = new Point(0, 0, 0);
+	}
+	
+	return Math.sqrt(Math.pow(this.x - destination.x, 2)
+					+ Math.pow(this.y - destination.y, 2)
+					+ Math.pow(this.z - destination.z, 2));
+};
+
 Point.prototype.inverse = function() {
 	var inverse = new Point(invert(this.x), invert(this.y), invert(this.z));
 		

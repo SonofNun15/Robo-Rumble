@@ -14,4 +14,22 @@ describe ('Point', function() {
 		expect(inverse.y).to.equal(Number.POSITIVE_INFINITY);
 		expect(inverse.z).to.equal(Number.POSITIVE_INFINITY);
 	});
+	
+	it ('should get the distance to (1, 0, 0) as 1', function() {
+		var point = new Point(1, 0, 0);
+		var distance = point.distance();
+		expect(distance).to.equal(1);
+	});
+	
+	it ('should get the distance to (1, 1, 1) as the square root of 3', function() {
+		var point = new Point(1, 1, 1);
+		var distance = point.distance();
+		expect(distance).to.equal(Math.sqrt(3));
+	});
+	
+	it ('should get the distance to (3, 4, 0) as 5', function() {
+		var point = new Point(3, 4, 0);
+		var distance = point.distance();
+		expect(distance).to.equal(5);
+	});
 });
