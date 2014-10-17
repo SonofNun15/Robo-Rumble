@@ -16,8 +16,3 @@ Sensor.getVisibleObjects = function(map) {
 		}
 	}
 };
-
-Sensor.visible = function(item, map) {
-	// override in inheriting classes
-	return false;
-};
