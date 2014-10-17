@@ -96,14 +96,15 @@ Map.prototype.checkForCollision = function(item, movingItem, ray, pushed, visibi
 
 Map.prototype.bottom = -5;
 
-Map.prototype.isUninterrupted = function(ray, source) {
+Map.prototype.isUninterrupted = function(ray, target) {
+	var blocked = false;
 	_.each(this.items, function(item) {
-		if (this.checkForCollision(item, source, ray, false, true)) {
-			return false;
+		if (this.checkForCollision(item, target, ray, false, true)) {
+			blocked = true;
 		}
 	}, this );
 	
-	return true;
+	return !blocked;
 };
 
 Map.prototype.intersect = function(ray, cube) {
