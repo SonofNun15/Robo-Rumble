@@ -6,5 +6,14 @@ function SoundSensor(robot) {
 }
 
 SoundSensor.prototype.visible = function(item, map) {
-	return true;	//implement functionality
+	var distance = this.robot.coordinate.distance(item.coordinate);
+	
+	if (distance > this.range)
+	{
+		return false;
+	}
+	
+	var ray = new Ray(this.robot.coordinate.toVector(item.coordinate));
+	
+	return map.isUninterrupted(ray, this.robot);
 };
