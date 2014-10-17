@@ -27,8 +27,8 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 	var movementRay = new Ray(origin.toVector(direction));
 	//apply some filter to the map items
 	_.each(map.items, function(item) {
-		if (checkForCollision(item, movementRay)) {
-		stop = true;
+		if (map.checkForCollision(item, movingItem, movementRay, pushed)) {
+			stop = true;
 		}
 	} );
 	if (!stop) {
@@ -37,33 +37,6 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 	gravity();
 	return !stop;
 	
-	function checkForCollision(item, ray) {
-		var stop;
-		if (item === movingItem) {
-			//item can't collide with itself
-			return;
-		}
-		
-		if (map.intersect(ray, item)) {
-			if (item.permeability === permeability.nonpermeable) {
-				stop = true;
-			}
-			else if (item.permeability === permeability.moveable) {
-				//only one item can be pushed. If the moving item was pushed, moveable collisions are treated the same as nonpermeable
-				if (!pushed) {
-					if (map.move(item, direction, true) === false) {
-						stop = true;
-					}
-				}
-				else {
-					stop = true;
-				}
-			}
-			//call interaction functions
-		}
-		return stop;
-	}
-	
 	function gravity() {
 		var stop = false;
 		//add (0.5, 0.5, 0.5) to the coordinate of the moving item to measure from the center of the space
@@ -71,8 +44,8 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 		var movementRay = new Ray(origin.toVector(heading.down));
 		//apply some filter to the map items
 		_.each(map.items, function(item) {
-			if (checkForCollision(item, movementRay)) {
-			stop = true;
+			if (map.checkForCollision(item, movingItem, movementRay, true)) {
+				stop = true;
 			}
 		} );
 		if (!stop) {
@@ -87,7 +60,51 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 	}
 };
 
+
+	
+Map.prototype.checkForCollision = function(item, movingItem, ray, pushed, visibilityTest) {
+	var stop;
+	if (item === movingItem) {
+		//item can't collide with itself
+		return;
+	}
+	
+	if (this.intersect(ray, item)) {
+		if (visibilityTest)
+		{
+			//for now, all items block LOS
+			stop = true;
+		}
+		else if (item.permeability === permeability.nonpermeable) {
+			stop = true;
+		}
+		else if (item.permeability === permeability.moveable) {
+			//only one item can be pushed. If the moving item was pushed, moveable collisions are treated the same as nonpermeable
+			if (!pushed) {
+				if (this.move(item, ray.offset, true) === false) {
+					stop = true;
+				}
+			}
+			else {
+				stop = true;
+			}
+		}
+		//call interaction functions
+	}
+	return stop;
+};
+
 Map.prototype.bottom = -5;
+
+Map.prototype.isUninterrupted = function(ray, source) {
+	_.each(this.items, function(item) {
+		if (this.checkForCollision(item, source, ray, false, true)) {
+			return false;
+		}
+	}, this );
+	
+	return true;
+};
 
 Map.prototype.intersect = function(ray, cube) {
 	var bounds = [ cube.coordinate,
