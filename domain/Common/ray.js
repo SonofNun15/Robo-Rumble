@@ -6,4 +6,11 @@ function Ray(vector) {
 	this.sign = [ this.invoffset.x < 0 ? 1 : 0
 				, this.invoffset.y < 0 ? 1 : 0
 				, this.invoffset.z < 0 ? 1 : 0 ];
+	this.startTime = 0;
+	this.endTime = 1;
 }
+
+Ray.prototype.destination = function() {
+	var distance = this.offset.multiply(this.endTime - this.startTime);
+	return this.origin.add(distance);
+};

@@ -17,10 +17,39 @@ Point.prototype.add = function(relativePoint) {
 					, this.z + relativePoint.z);
 };
 
+Point.prototype.subtract = function(relativePoint) {
+	var reversePoint = new Point(-relativePoint.x, -relativePoint.y, -relativePoint.z);
+	return this.add(reversePoint);
+};
+
 Point.prototype.equals = function(point) {
 	return (this.x == point.x
 			&& this.y == point.y
 			&& this.z == point.z);
+};
+
+Point.prototype.multiply = function(num) {
+	return new Point(this.x * num
+					, this.y * num
+					, this.z * num);
+};
+
+Point.prototype.distance = function(destination) {
+	// distance of the line from this to destination using the formula d^2 = x^2 + y^2 + z^2
+	if (destination == null)
+	{
+		destination = new Point(0, 0, 0);
+	}
+	
+	return Math.sqrt(Math.pow(this.x - destination.x, 2)
+					+ Math.pow(this.y - destination.y, 2)
+					+ Math.pow(this.z - destination.z, 2));
+};
+
+Point.prototype.center = function(item) {
+	return new Point(this.x + (item.size.x / 2)
+					, this.y + (item.size.y / 2)
+					, this.z + (item.size.z / 2));
 };
 
 Point.prototype.inverse = function() {

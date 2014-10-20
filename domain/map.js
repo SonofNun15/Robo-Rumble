@@ -3,6 +3,10 @@ function Map() {
 	this.items = [];
 }
 
+Map.prototype.getAllItems = function() {
+	return this.items;
+};
+
 Map.prototype.getRobots = function() {
 	return _.filter(this.items, function(item) { return item.type == mapItemType.robot; });
 };
@@ -23,8 +27,8 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 	var movementRay = new Ray(origin.toVector(direction));
 	//apply some filter to the map items
 	_.each(map.items, function(item) {
-		if (checkForCollision(item, movementRay)) {
-		stop = true;
+		if (map.checkForCollision(item, movingItem, movementRay, pushed)) {
+			stop = true;
 		}
 	} );
 	if (!stop) {
@@ -33,33 +37,6 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 	gravity();
 	return !stop;
 	
-	function checkForCollision(item, ray) {
-		var stop;
-		if (item === movingItem) {
-			//item can't collide with itself
-			return;
-		}
-		
-		if (map.intersect(ray, item)) {
-			if (item.permeability === permeability.nonpermeable) {
-				stop = true;
-			}
-			else if (item.permeability === permeability.moveable) {
-				//only one item can be pushed. If the moving item was pushed, moveable collisions are treated the same as nonpermeable
-				if (!pushed) {
-					if (map.move(item, direction, true) === false) {
-						stop = true;
-					}
-				}
-				else {
-					stop = true;
-				}
-			}
-			//call interaction functions
-		}
-		return stop;
-	}
-	
 	function gravity() {
 		var stop = false;
 		//add (0.5, 0.5, 0.5) to the coordinate of the moving item to measure from the center of the space
@@ -67,16 +44,15 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 		var movementRay = new Ray(origin.toVector(heading.down));
 		//apply some filter to the map items
 		_.each(map.items, function(item) {
-			if (checkForCollision(item, movementRay)) {
-			stop = true;
+			if (map.checkForCollision(item, movingItem, movementRay, true)) {
+				stop = true;
 			}
 		} );
 		if (!stop) {
 			movingItem.coordinate = movingItem.coordinate.add(heading.down);
 			if (movingItem.coordinate.z < map.bottom) {
 				//item falls off the map
-				var index = map.items.indexOf(movingItem);
-				map.items.splice(index, 1);
+				map.items.remove(movingItem);
 				return;
 			}
 			gravity();
@@ -84,7 +60,52 @@ Map.prototype.move = function(movingItem, direction, pushed) {
 	}
 };
 
+
+	
+Map.prototype.checkForCollision = function(item, movingItem, ray, pushed, visibilityTest) {
+	var stop;
+	if (item === movingItem) {
+		//item can't collide with itself
+		return;
+	}
+	
+	if (this.intersect(ray, item)) {
+		if (visibilityTest)
+		{
+			//for now, all items block LOS
+			stop = true;
+		}
+		else if (item.permeability === permeability.nonpermeable) {
+			stop = true;
+		}
+		else if (item.permeability === permeability.moveable) {
+			//only one item can be pushed. If the moving item was pushed, moveable collisions are treated the same as nonpermeable
+			if (!pushed) {
+				if (this.move(item, ray.offset, true) === false) {
+					stop = true;
+				}
+			}
+			else {
+				stop = true;
+			}
+		}
+		//call interaction functions
+	}
+	return stop;
+};
+
 Map.prototype.bottom = -5;
+
+Map.prototype.isUninterrupted = function(ray, target) {
+	var blocked = false;
+	_.each(this.items, function(item) {
+		if (this.checkForCollision(item, target, ray, false, true)) {
+			blocked = true;
+		}
+	}, this );
+	
+	return !blocked;
+};
 
 Map.prototype.intersect = function(ray, cube) {
 	var bounds = [ cube.coordinate,
@@ -112,9 +133,13 @@ Map.prototype.intersect = function(ray, cube) {
     if (maxTimeToZIntersect < maxTimeToIntersect)
         maxTimeToIntersect = maxTimeToZIntersect;
 	
-	//a value of < 0 or > 1 indicates that the collision happens outside of the length of the Ray
-	if ((minTimeToIntersect > 0 && minTimeToIntersect < 1) || (maxTimeToIntersect > 0 && maxTimeToIntersect < 1)) {
+	//a value of < ray.startTime or > ray.endTime indicates that the collision happens outside of the length of the Ray
+	if (minTimeToIntersect > ray.startTime && minTimeToIntersect < ray.endTime) {
 		return true;
+	}
+	else if (maxTimeToIntersect >= ray.startTime && maxTimeToIntersect <= ray.endTime) {
+		//indicates that the ray begins within the cube
+		return false;
 	}
 	else {
 		return false;
