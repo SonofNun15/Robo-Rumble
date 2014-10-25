@@ -36,3 +36,14 @@ heading.counterclockwise = function(point) {
 		return heading.south;
 	}
 };
+
+heading.rotate = function(currentSpin, point) {
+	if (currentSpin == spin.clockwise)
+	{
+		return heading.clockwise(point);
+	}
+	else
+	{
+		return heading.counterclockwise(point);
+	}
+};
