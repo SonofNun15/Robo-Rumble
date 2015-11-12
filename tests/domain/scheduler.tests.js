@@ -129,10 +129,12 @@ describe ('Scheduler', function() {
 		var pusher = new BoardElementEmulator();
 		pusher.priority = { '5': true };
 		pusher.coordinate = new Point(1, 0, 0);
+		pusher.size = new Size(0, 1, 1);
 		
 		var crusher = new BoardElementEmulator();
 		crusher.priority = { '3': true };
 		crusher.coordinate = new Point(0, 0, 1);
+		crusher.size = new Size(1, 1, 0);
 		
 		var robot = new Robot();
 		robot.coordinate = new Point(0, 0, 0);

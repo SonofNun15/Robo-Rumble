@@ -3,4 +3,5 @@ function ConcreteBlock() {
 	this.type = mapItemType.boardElement;
 	this.coordinate = new Point();
 	this.size = new Size();
+	this.priority = {};
 }
