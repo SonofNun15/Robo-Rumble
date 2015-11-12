@@ -23,6 +23,12 @@ Point.prototype.equals = function(point) {
 			&& this.z == point.z);
 };
 
+Point.prototype.divide = function(divisor) {
+	return new Point(this.x / divisor
+					, this.y / divisor
+					, this.z / divisor);
+};
+
 Point.prototype.inverse = function() {
 	var inverse = new Point(invert(this.x), invert(this.y), invert(this.z));
 		
